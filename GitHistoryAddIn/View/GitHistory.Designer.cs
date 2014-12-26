@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider6 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
+            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider1 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
             this.button1 = new System.Windows.Forms.Button();
             this.calendarView1 = new ContributionGraph.CalendarView();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,7 +54,7 @@
             // calendarView1
             // 
             this.calendarView1.BackColor = System.Drawing.Color.White;
-            this.calendarView1.ColorProvider = discreteWeightedColorProvider6;
+            this.calendarView1.ColorProvider = discreteWeightedColorProvider1;
             this.calendarView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calendarView1.DataSource = null;
             this.calendarView1.DisplayedWeeks = 53;
@@ -95,6 +95,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(244, 10);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 6;
             // 
