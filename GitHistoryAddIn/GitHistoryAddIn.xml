@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GitHistoryAddIn</name>
+    </assembly>
+    <members>
+        <member name="T:GitHistoryAddIn.Connect">
+            <summary>The object for implementing an Add-in.</summary>
+            <seealso class='IDTExtensibility2' />
+        </member>
+        <member name="F:GitHistoryAddIn.View.GitHistory.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:GitHistoryAddIn.View.GitHistory.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:GitHistoryAddIn.View.GitHistory.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>
