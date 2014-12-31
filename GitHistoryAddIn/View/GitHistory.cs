@@ -37,19 +37,7 @@ namespace GitHistoryAddIn.View
             ContributionList data = new ContributionList();
 
             commits.ForEach(x =>  { 
-
-                DateTime commitDate = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd"));
-                ContributionItem existingItem = data.Find(y => y.Date.ToString("yyyy-MM-dd").Equals(commitDate.ToString("yyyy-MM-dd")));
-
-                if (existingItem == null) 
-                {
-                    data.Add(new ContributionItem { Date = commitDate, ContributionCount = 1, Subject = x.Commit.Message });
-                }
-                else 
-                {
-                    existingItem.ContributionCount++;
-                }
-                
+                data.Add(new ContributionItem { Date = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd")), ContributionCount = 1, Subject = x.Commit.Message });
             });
 
             this.calendarView1.DataSource = data;
