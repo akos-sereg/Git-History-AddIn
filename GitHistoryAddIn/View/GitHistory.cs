@@ -20,19 +20,7 @@ namespace GitHistoryAddIn.View
 
         public GitProjectBinding _projectBinding;
 
-        private string _sourceCodePath;
-        public string SourceCodePath
-        {
-            get
-            {
-                return _sourceCodePath;
-            }
-            set
-            {
-                _sourceCodePath = value;
-                this.fileNameLabel.Text = _sourceCodePath;
-            }
-        }
+        public string SourceCodePath { get; set; }
 
         public GitHistory()
         {
@@ -43,13 +31,12 @@ namespace GitHistoryAddIn.View
         {
             if (_projectBinding == null)
             {
-                ProjectBindingForm bindingForm = new ProjectBindingForm(this._projectBinding);
-                bindingForm.ShowDialog();
-
-                _projectBinding = bindingForm.ProjectBinding;
+                this.fileNameLabel.ForeColor = Color.DarkRed;
+                this.fileNameLabel.Text = "Project Binding is not set";
+                return;
             }
 
-            if (_projectBinding != null)
+            if (!string.IsNullOrEmpty(this.SourceCodePath))
             {
                 new GitClient().GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, SourceCodePath, OnCommitsReturned);
             }
@@ -64,6 +51,8 @@ namespace GitHistoryAddIn.View
             });
 
             this.calendarView1.DataSource = data;
+            this.fileNameLabel.Text = SourceCodePath;
+            this.fileNameLabel.ForeColor = Color.Black;
         }
 
         private void gitProjectBindingLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -72,6 +61,8 @@ namespace GitHistoryAddIn.View
             bindingForm.ShowDialog();
 
             _projectBinding = bindingForm.ProjectBinding;
+
+            LoadHistory();
         }
     }
 }
