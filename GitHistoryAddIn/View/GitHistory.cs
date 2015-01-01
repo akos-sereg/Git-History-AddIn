@@ -43,7 +43,7 @@ namespace GitHistoryAddIn.View
         {
             if (_projectBinding == null)
             {
-                ProjectBindingForm bindingForm = new ProjectBindingForm();
+                ProjectBindingForm bindingForm = new ProjectBindingForm(this._projectBinding);
                 bindingForm.ShowDialog();
 
                 _projectBinding = bindingForm.ProjectBinding;
@@ -68,7 +68,7 @@ namespace GitHistoryAddIn.View
 
         private void gitProjectBindingLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProjectBindingForm bindingForm = new ProjectBindingForm();
+            ProjectBindingForm bindingForm = new ProjectBindingForm(this._projectBinding);
             bindingForm.ShowDialog();
 
             _projectBinding = bindingForm.ProjectBinding;

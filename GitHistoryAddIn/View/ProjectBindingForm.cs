@@ -13,11 +13,30 @@ namespace GitHistoryAddIn.View
 {
     public partial class ProjectBindingForm : Form
     {
-        public GitProjectBinding ProjectBinding;
+        private GitProjectBinding _projectBinding;
+        public GitProjectBinding ProjectBinding
+        {
+            get
+            {
+                return _projectBinding;
+            }
+            set
+            {
+                _projectBinding = value;
+                if (_projectBinding != null) 
+                {
+                    this.gitUsername.Text = _projectBinding.GitUsername;
+                    this.gitPassword.Text = _projectBinding.GitPassword;
+                    this.gitProjectName.Text = _projectBinding.ProjectName;
+                }
+            }
+        }
 
-        public ProjectBindingForm()
+        public ProjectBindingForm(GitProjectBinding projectBinding)
         {
             InitializeComponent();
+
+            ProjectBinding = projectBinding;
         }
 
         private void button1_Click(object sender, EventArgs e)
