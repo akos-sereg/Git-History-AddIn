@@ -37,7 +37,6 @@
             // calendarView1
             // 
             this.calendarView1.BackColor = System.Drawing.Color.White;
-            this.calendarView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.calendarView1.ColorProvider = discreteWeightedColorProvider1;
             this.calendarView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calendarView1.DataSource = null;
