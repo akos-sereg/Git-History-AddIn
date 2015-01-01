@@ -8,6 +8,8 @@ using Microsoft.VisualStudio.CommandBars;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using GitHistoryAddIn.View;
+using System.Text.RegularExpressions;
 
 namespace GitHistoryAddIn
 {
@@ -48,14 +50,6 @@ namespace GitHistoryAddIn
 
                 toolWins = (Windows2)_applicationObject.Windows;
                 toolWindow = toolWins.CreateToolWindow2(_addInInstance, asmPath, ctlProgID, "Git History", guidStr, ref objTemp);
-                
-                if (toolWindow != null)
-                {
-                    toolWindow.Visible = true;
-                }
-                
-                toolWindow.Height = 500;
-                toolWindow.Width = 400;
             }
             catch (Exception ex)
             {
@@ -100,9 +94,15 @@ namespace GitHistoryAddIn
                     {
                         List<SelectedFile> selectedFiles = GetSelectedFiles();
 
-                        MessageBox.Show(selectedFiles.Count.ToString());
                         toolWindow.Visible = true;
-                        selectedFiles.ForEach(x => MessageBox.Show(x.FriendlyFilePath));
+                        GitHistory historyWindow = (GitHistory)toolWindow.Object;
+
+                        if (selectedFiles.Count > 0)
+                        {
+                            historyWindow.SourceCodePath = selectedFiles[0].FriendlyFilePath.Replace(@"\", @"/").Remove(0, 1);
+                            MessageBox.Show(historyWindow.SourceCodePath);
+                            historyWindow.LoadHistory();
+                        }
                     }
                     catch (Exception err)
                     {
@@ -208,7 +208,7 @@ namespace GitHistoryAddIn
 
         private string GetFriendlyPath(string solutionPath, string filePath)
         {
-            return filePath.Replace(solutionPath, "");
+            return Regex.Replace(filePath, solutionPath.Replace(@"\", @"\\"), "", RegexOptions.IgnoreCase);
         }
 
         #region Output window

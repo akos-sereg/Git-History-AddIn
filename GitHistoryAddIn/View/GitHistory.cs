@@ -1,5 +1,6 @@
 ﻿using ContributionGraph.Model;
 using GitHistoryAddIn.Controller;
+using GitHistoryAddIn.Model;
 using GitHubSharp.Models;
 using System;
 using System.Collections.Generic;
@@ -17,24 +18,37 @@ namespace GitHistoryAddIn.View
     {
         public delegate void ProcessCommits(List<CommitModel> commits);
 
-        private string _projectName;
+        public GitProjectBinding _projectBinding;
+
+        public string SourceCodePath { get; set; }
 
         public GitHistory()
         {
             InitializeComponent();
         }
 
-        public GitHistory(string projectName)
-        {
-            this._projectName = projectName;
-
-            InitializeComponent();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             GitClient client = new GitClient();
-            client.GetCommits(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, OnCommitsReturned);
+
+            if (_projectBinding == null)
+            {
+                ProjectBindingForm bindingForm = new ProjectBindingForm();
+                bindingForm.ShowDialog();
+
+                _projectBinding = bindingForm.ProjectBinding;
+            }
+
+            if (_projectBinding != null)
+            {
+                client.GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, SourceCodePath, OnCommitsReturned);
+            }
+        }
+
+        public void LoadHistory()
+        {
+            GitClient client = new GitClient();
+            client.GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, SourceCodePath, OnCommitsReturned);
         }
 
         public void OnCommitsReturned(List<CommitModel> commits)
@@ -46,6 +60,14 @@ namespace GitHistoryAddIn.View
             });
 
             this.calendarView1.DataSource = data;
+        }
+
+        private void gitProjectBindingLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProjectBindingForm bindingForm = new ProjectBindingForm();
+            bindingForm.ShowDialog();
+
+            _projectBinding = bindingForm.ProjectBinding;
         }
     }
 }

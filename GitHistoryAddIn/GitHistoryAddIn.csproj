@@ -70,12 +70,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controller\GitClient.cs" />
+    <Compile Include="Model\GitProjectBinding.cs" />
     <Compile Include="Model\SelectedFile.cs" />
     <Compile Include="View\GitHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\GitHistory.Designer.cs">
       <DependentUpon>GitHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectBindingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProjectBindingForm.Designer.cs">
+      <DependentUpon>ProjectBindingForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +151,9 @@
   <ItemGroup>
     <EmbeddedResource Include="View\GitHistory.resx">
       <DependentUpon>GitHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProjectBindingForm.resx">
+      <DependentUpon>ProjectBindingForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
