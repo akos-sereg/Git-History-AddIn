@@ -20,17 +20,27 @@ namespace GitHistoryAddIn.View
 
         public GitProjectBinding _projectBinding;
 
-        public string SourceCodePath { get; set; }
+        private string _sourceCodePath;
+        public string SourceCodePath
+        {
+            get
+            {
+                return _sourceCodePath;
+            }
+            set
+            {
+                _sourceCodePath = value;
+                this.fileNameLabel.Text = _sourceCodePath;
+            }
+        }
 
         public GitHistory()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void LoadHistory()
         {
-            GitClient client = new GitClient();
-
             if (_projectBinding == null)
             {
                 ProjectBindingForm bindingForm = new ProjectBindingForm();
@@ -41,14 +51,8 @@ namespace GitHistoryAddIn.View
 
             if (_projectBinding != null)
             {
-                client.GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, SourceCodePath, OnCommitsReturned);
+                new GitClient().GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, SourceCodePath, OnCommitsReturned);
             }
-        }
-
-        public void LoadHistory()
-        {
-            GitClient client = new GitClient();
-            client.GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, SourceCodePath, OnCommitsReturned);
         }
 
         public void OnCommitsReturned(List<CommitModel> commits)

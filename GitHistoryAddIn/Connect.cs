@@ -100,7 +100,6 @@ namespace GitHistoryAddIn
                         if (selectedFiles.Count > 0)
                         {
                             historyWindow.SourceCodePath = selectedFiles[0].FriendlyFilePath.Replace(@"\", @"/").Remove(0, 1);
-                            MessageBox.Show(historyWindow.SourceCodePath);
                             historyWindow.LoadHistory();
                         }
                     }
