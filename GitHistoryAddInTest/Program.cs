@@ -16,7 +16,7 @@ namespace GitHistoryAddInTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GitHistoryAddIn.View.GitHistory(""));
+            Application.Run(new TestForm());
         }
     }
 }

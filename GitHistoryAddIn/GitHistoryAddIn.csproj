@@ -72,7 +72,7 @@
     <Compile Include="Controller\GitClient.cs" />
     <Compile Include="Model\SelectedFile.cs" />
     <Compile Include="View\GitHistory.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\GitHistory.Designer.cs">
       <DependentUpon>GitHistory.cs</DependentUpon>

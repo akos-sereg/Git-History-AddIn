@@ -13,11 +13,16 @@ using System.Windows.Forms;
 
 namespace GitHistoryAddIn.View
 {
-    public partial class GitHistory : Form
+    public partial class GitHistory : UserControl
     {
         public delegate void ProcessCommits(List<CommitModel> commits);
 
         private string _projectName;
+
+        public GitHistory()
+        {
+            InitializeComponent();
+        }
 
         public GitHistory(string projectName)
         {

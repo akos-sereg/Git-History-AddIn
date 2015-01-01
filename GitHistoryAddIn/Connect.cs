@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.CommandBars;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace GitHistoryAddIn
 {
@@ -16,6 +17,7 @@ namespace GitHistoryAddIn
 	{
         private const string FILE_COMMAND_ID = "File";
 
+        private EnvDTE.Window toolWindow = null;
         private List<CommandBarControl> _buttons = new List<CommandBarControl>();
 
         public string GetCommandId(string command, bool withProgId)
@@ -33,6 +35,32 @@ namespace GitHistoryAddIn
         {
             _applicationObject = (DTE2)application;
             _addInInstance = (AddIn)addInInst;
+
+            try
+            {
+                string ctlProgID, asmPath, guidStr;
+                EnvDTE80.Windows2 toolWins;
+                object objTemp = null;
+
+                ctlProgID = "GitHistoryAddIn.View.GitHistory";
+                asmPath = Assembly.GetExecutingAssembly().CodeBase;
+                guidStr = "{E9C60F2B-F01B-4e3e-A551-C09C62E5F584}";
+
+                toolWins = (Windows2)_applicationObject.Windows;
+                toolWindow = toolWins.CreateToolWindow2(_addInInstance, asmPath, ctlProgID, "Git History", guidStr, ref objTemp);
+                
+                if (toolWindow != null)
+                {
+                    toolWindow.Visible = true;
+                }
+                
+                toolWindow.Height = 500;
+                toolWindow.Width = 400;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Exception: " + ex.Message);
+            }
         }
 
         public void OnAddInsUpdate(ref Array custom)
@@ -73,6 +101,7 @@ namespace GitHistoryAddIn
                         List<SelectedFile> selectedFiles = GetSelectedFiles();
 
                         MessageBox.Show(selectedFiles.Count.ToString());
+                        toolWindow.Visible = true;
                         selectedFiles.ForEach(x => MessageBox.Show(x.FriendlyFilePath));
                     }
                     catch (Exception err)
