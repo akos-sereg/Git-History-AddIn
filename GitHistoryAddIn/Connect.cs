@@ -38,6 +38,8 @@ namespace GitHistoryAddIn
             _applicationObject = (DTE2)application;
             _addInInstance = (AddIn)addInInst;
 
+            _applicationObject.Events.WindowEvents.WindowActivated += new _dispWindowEvents_WindowActivatedEventHandler(WindowEvents_WindowActivated);
+
             try
             {
                 string ctlProgID, asmPath, guidStr;
@@ -54,6 +56,27 @@ namespace GitHistoryAddIn
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show("Exception: " + ex.Message);
+            }
+        }
+
+        void WindowEvents_WindowActivated(Window GotFocus, Window LostFocus)
+        {
+            try
+            {
+                if (GotFocus.Document == null)
+                {
+                    return;
+                }
+
+                string relativePath = GetFriendlyPath(Path.GetDirectoryName(_applicationObject.Solution.FullName), GotFocus.Document.FullName);
+
+                GitHistory historyWindow = (GitHistory)toolWindow.Object;
+                historyWindow.SourceCodePath = relativePath.Replace(@"\", @"/").Remove(0, 1);
+                historyWindow.LoadHistory();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
             }
         }
 
