@@ -36,9 +36,11 @@
             // 
             // gitHistory1
             // 
+            this.gitHistory1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gitHistory1.Location = new System.Drawing.Point(12, 48);
             this.gitHistory1.Name = "gitHistory1";
-            this.gitHistory1.Size = new System.Drawing.Size(862, 187);
+            this.gitHistory1.Size = new System.Drawing.Size(1124, 187);
             this.gitHistory1.SourceCodePath = null;
             this.gitHistory1.TabIndex = 0;
             // 
@@ -72,7 +74,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 250);
+            this.ClientSize = new System.Drawing.Size(1148, 250);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
