@@ -51,6 +51,8 @@ namespace GitHistoryAddIn.View
                     {
                         this.commitsComboBox.SelectedIndex = 0;
                     }
+
+                    this.commitsLabel.Text = string.Format("Commits ({0})", contrib.Commits.Count);
                 }
             };
         }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider2 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
+            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider1 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
             this.gitProjectBindingLink = new System.Windows.Forms.LinkLabel();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -38,7 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.authorLabel = new System.Windows.Forms.Label();
             this.commitsComboBox = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.commitsLabel = new System.Windows.Forms.Label();
             this.calendarView1 = new ContributionGraph.CalendarView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarImage)).BeginInit();
@@ -137,25 +137,25 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.commitsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.commitsComboBox.FormattingEnabled = true;
-            this.commitsComboBox.Location = new System.Drawing.Point(831, 14);
+            this.commitsComboBox.Location = new System.Drawing.Point(876, 14);
             this.commitsComboBox.Name = "commitsComboBox";
-            this.commitsComboBox.Size = new System.Drawing.Size(469, 21);
+            this.commitsComboBox.Size = new System.Drawing.Size(424, 21);
             this.commitsComboBox.TabIndex = 6;
             this.commitsComboBox.SelectedIndexChanged += new System.EventHandler(this.commitsComboBox_SelectedIndexChanged);
             // 
-            // label7
+            // commitsLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(779, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Commits";
+            this.commitsLabel.AutoSize = true;
+            this.commitsLabel.Location = new System.Drawing.Point(779, 17);
+            this.commitsLabel.Name = "commitsLabel";
+            this.commitsLabel.Size = new System.Drawing.Size(46, 13);
+            this.commitsLabel.TabIndex = 6;
+            this.commitsLabel.Text = "Commits";
             // 
             // calendarView1
             // 
             this.calendarView1.BackColor = System.Drawing.Color.White;
-            this.calendarView1.ColorProvider = discreteWeightedColorProvider2;
+            this.calendarView1.ColorProvider = discreteWeightedColorProvider1;
             this.calendarView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calendarView1.DataSource = null;
             this.calendarView1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
@@ -173,7 +173,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.commitsLabel);
             this.Controls.Add(this.commitsComboBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.fileNameLabel);
@@ -199,7 +199,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.ComboBox commitsComboBox;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label commitsLabel;
         private System.Windows.Forms.RichTextBox titleTextArea;
         private System.Windows.Forms.PictureBox avatarImage;
     }
