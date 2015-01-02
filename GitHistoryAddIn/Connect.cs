@@ -75,8 +75,9 @@ namespace GitHistoryAddIn
 
                 GitHistory historyWindow = (GitHistory)toolWindow.Object;
                 historyWindow.SolutionName = Path.GetFileNameWithoutExtension(_applicationObject.Solution.FullName);
-                historyWindow.SourceCodePath = relativePath.Replace(@"\", @"/").Remove(0, 1);
-                historyWindow.LoadHistory();
+
+                string sourcePath = relativePath.Replace(@"\", @"/").Remove(0, 1);
+                RefreshSourceCodePath(historyWindow, relativePath);
             }
             catch (Exception err)
             {
@@ -127,8 +128,7 @@ namespace GitHistoryAddIn
 
                         if (selectedFiles.Count > 0)
                         {
-                            historyWindow.SourceCodePath = selectedFiles[0].FriendlyFilePath.Replace(@"\", @"/").Remove(0, 1);
-                            historyWindow.LoadHistory();
+                            RefreshSourceCodePath(historyWindow, selectedFiles[0].FriendlyFilePath);
                         }
                     }
                     catch (Exception err)
@@ -136,6 +136,16 @@ namespace GitHistoryAddIn
                         MessageBox.Show(err.Message);
                     }
                 }
+            }
+        }
+
+        private void RefreshSourceCodePath(GitHistory historyWindow, string relativePath)
+        {
+            string sourcePath = relativePath.Replace(@"\", @"/").Remove(0, 1);
+            if (sourcePath != historyWindow.SourceCodePath)
+            {
+                historyWindow.SourceCodePath = sourcePath;
+                historyWindow.LoadHistory();
             }
         }
 
