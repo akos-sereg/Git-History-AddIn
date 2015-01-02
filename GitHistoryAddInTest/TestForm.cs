@@ -22,5 +22,10 @@ namespace GitHistoryAddInTest
             this.gitHistory1.SourceCodePath = textBox1.Text;
             this.gitHistory1.LoadHistory();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.gitHistory1.SolutionName = solutionName.Text;
+        }
     }
 }

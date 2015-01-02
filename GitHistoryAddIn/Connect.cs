@@ -52,6 +52,9 @@ namespace GitHistoryAddIn
 
                 toolWins = (Windows2)_applicationObject.Windows;
                 toolWindow = toolWins.CreateToolWindow2(_addInInstance, asmPath, ctlProgID, "Git History", guidStr, ref objTemp);
+
+                GitHistory historyWindow = (GitHistory)toolWindow.Object;
+                historyWindow.SolutionName = Path.GetFileNameWithoutExtension(_applicationObject.Solution.FullName);
             }
             catch (Exception ex)
             {
@@ -71,6 +74,7 @@ namespace GitHistoryAddIn
                 string relativePath = GetFriendlyPath(Path.GetDirectoryName(_applicationObject.Solution.FullName), GotFocus.Document.FullName);
 
                 GitHistory historyWindow = (GitHistory)toolWindow.Object;
+                historyWindow.SolutionName = Path.GetFileNameWithoutExtension(_applicationObject.Solution.FullName);
                 historyWindow.SourceCodePath = relativePath.Replace(@"\", @"/").Remove(0, 1);
                 historyWindow.LoadHistory();
             }
@@ -119,6 +123,7 @@ namespace GitHistoryAddIn
 
                         toolWindow.Visible = true;
                         GitHistory historyWindow = (GitHistory)toolWindow.Object;
+                        historyWindow.SolutionName = Path.GetFileNameWithoutExtension(_applicationObject.Solution.FullName);
 
                         if (selectedFiles.Count > 0)
                         {

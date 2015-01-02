@@ -69,6 +69,7 @@
     <Compile Include="Connect.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controller\BindingStore.cs" />
     <Compile Include="Controller\GitClient.cs" />
     <Compile Include="Model\GitProjectBinding.cs" />
     <Compile Include="Model\SelectedFile.cs" />

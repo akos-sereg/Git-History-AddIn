@@ -20,6 +20,21 @@ namespace GitHistoryAddIn.View
 
         public GitProjectBinding _projectBinding;
 
+        public BindingStore _bindingStore = new BindingStore();
+
+        private string _solutionName;
+        public string SolutionName {
+            get
+            {
+                return this._solutionName;
+            }
+            set
+            {
+                this._solutionName = value;
+                this.AutoBind();
+            }
+        }
+
         public string SourceCodePath { get; set; }
 
         public GitHistory()
@@ -42,7 +57,7 @@ namespace GitHistoryAddIn.View
 
         public void LoadHistory()
         {
-            if (_projectBinding == null)
+            if (_projectBinding == null || !_projectBinding.IsValid)
             {
                 this.fileNameLabel.ForeColor = Color.DarkRed;
                 this.fileNameLabel.Text = "Project Binding is not set";
@@ -74,9 +89,35 @@ namespace GitHistoryAddIn.View
             this.commitsComboBox.Items.Clear();
         }
 
+        public void AutoBind()
+        {
+            List<GitProjectBinding> binding = this._bindingStore.GetBindings();
+            GitProjectBinding matchingBinding = binding.FirstOrDefault(x => x.Solution == this.SolutionName);
+
+            if (matchingBinding != null)
+            {
+                this._projectBinding = matchingBinding;
+
+                this.fileNameLabel.ForeColor = Color.Black;
+                this.fileNameLabel.Text = string.Format("Auto-bind to Git Project {0}", matchingBinding.ProjectName);
+            }
+            else
+            {
+                this.fileNameLabel.ForeColor = Color.DarkRed;
+                this.fileNameLabel.Text = "Could not auto-bind solution: " + (this.SolutionName == null ? "Unknown Solution" : this.SolutionName);
+            }
+        }
+
         private void gitProjectBindingLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProjectBindingForm bindingForm = new ProjectBindingForm(this._projectBinding);
+            if (this._projectBinding == null)
+            {
+                this._projectBinding = new GitProjectBinding();
+            }
+
+            this._projectBinding.Solution = this.SolutionName;
+
+            ProjectBindingForm bindingForm = new ProjectBindingForm(this._projectBinding, this._bindingStore);
             bindingForm.ShowDialog();
 
             _projectBinding = bindingForm.ProjectBinding;
