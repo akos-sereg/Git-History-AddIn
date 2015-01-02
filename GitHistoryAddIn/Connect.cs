@@ -18,7 +18,8 @@ namespace GitHistoryAddIn
     public class Connect : IDTExtensibility2, IDTCommandTarget
 	{
         private const string FILE_COMMAND_ID = "File";
-
+        private const string PROJECT_COMMAND_ID = "FileOrFolder";
+        
         private EnvDTE.Window toolWindow = null;
         private List<CommandBarControl> _buttons = new List<CommandBarControl>();
 
@@ -92,6 +93,8 @@ namespace GitHistoryAddIn
         public void OnStartupComplete(ref Array custom)
         {
             AddButton("Item", FILE_COMMAND_ID, "Git History", "");
+            AddButton("Folder", FILE_COMMAND_ID, "Git History", "");
+            AddButton("Project", PROJECT_COMMAND_ID, "Git History", "");
         }
 
         public void OnDisconnection(ext_DisconnectMode disconnectMode, ref Array custom)
@@ -135,6 +138,33 @@ namespace GitHistoryAddIn
                     {
                         MessageBox.Show(err.Message);
                     }
+                } 
+                else if (CmdName.Equals(GetCommandId(PROJECT_COMMAND_ID, true), StringComparison.InvariantCultureIgnoreCase))
+                {
+                    try
+                    {
+                        if (_applicationObject.ActiveSolutionProjects == null)
+                        {
+                            return;
+                        }
+
+                        Object[] selectedProjects = (Object[])_applicationObject.ActiveSolutionProjects;
+
+                        string selectedProject = selectedProjects.Length > 0 ? "/"+((EnvDTE.Project)selectedProjects[0]).Name : string.Empty;
+                        
+                        toolWindow.Visible = true;
+                        GitHistory historyWindow = (GitHistory)toolWindow.Object;
+                        historyWindow.SolutionName = Path.GetFileNameWithoutExtension(_applicationObject.Solution.FullName);
+
+                        if (!string.IsNullOrEmpty(selectedProject))
+                        {
+                            RefreshSourceCodePath(historyWindow, selectedProject);
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show(err.Message);
+                    }
                 }
             }
         }
@@ -157,7 +187,8 @@ namespace GitHistoryAddIn
                 {
                     var status = vsCommandStatus.vsCommandStatusUnsupported;
 
-                    if (CmdName.Equals(GetCommandId(FILE_COMMAND_ID, true), StringComparison.InvariantCultureIgnoreCase))
+                    if (CmdName.Equals(GetCommandId(FILE_COMMAND_ID, true), StringComparison.InvariantCultureIgnoreCase) ||
+                        CmdName.Equals(GetCommandId(PROJECT_COMMAND_ID, true), StringComparison.InvariantCultureIgnoreCase))
                     {
                         status = vsCommandStatus.vsCommandStatusEnabled | vsCommandStatus.vsCommandStatusSupported;
                     }
