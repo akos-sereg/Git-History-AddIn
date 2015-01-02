@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider5 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
+            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider2 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
             this.gitProjectBindingLink = new System.Windows.Forms.LinkLabel();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.avatarImage = new System.Windows.Forms.PictureBox();
             this.titleTextArea = new System.Windows.Forms.RichTextBox();
             this.dateLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.authorLabel = new System.Windows.Forms.Label();
             this.commitsComboBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.avatarImage = new System.Windows.Forms.PictureBox();
             this.calendarView1 = new ContributionGraph.CalendarView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarImage)).BeginInit();
@@ -80,6 +80,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Commit Details";
             // 
+            // avatarImage
+            // 
+            this.avatarImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.avatarImage.Location = new System.Drawing.Point(15, 44);
+            this.avatarImage.Name = "avatarImage";
+            this.avatarImage.Size = new System.Drawing.Size(76, 72);
+            this.avatarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.avatarImage.TabIndex = 6;
+            this.avatarImage.TabStop = false;
+            // 
             // titleTextArea
             // 
             this.titleTextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -96,7 +106,7 @@
             // 
             this.dateLabel.AutoSize = true;
             this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.Location = new System.Drawing.Point(143, 22);
+            this.dateLabel.Location = new System.Drawing.Point(133, 22);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(27, 13);
             this.dateLabel.TabIndex = 3;
@@ -105,7 +115,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(104, 22);
+            this.label3.Location = new System.Drawing.Point(94, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 2;
@@ -114,10 +124,10 @@
             // authorLabel
             // 
             this.authorLabel.AutoSize = true;
-            this.authorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.authorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.authorLabel.Location = new System.Drawing.Point(12, 22);
             this.authorLabel.Name = "authorLabel";
-            this.authorLabel.Size = new System.Drawing.Size(27, 13);
+            this.authorLabel.Size = new System.Drawing.Size(30, 13);
             this.authorLabel.TabIndex = 1;
             this.authorLabel.Text = "N/A";
             // 
@@ -142,19 +152,10 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Commits";
             // 
-            // avatarImage
-            // 
-            this.avatarImage.Location = new System.Drawing.Point(15, 44);
-            this.avatarImage.Name = "avatarImage";
-            this.avatarImage.Size = new System.Drawing.Size(76, 72);
-            this.avatarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.avatarImage.TabIndex = 6;
-            this.avatarImage.TabStop = false;
-            // 
             // calendarView1
             // 
             this.calendarView1.BackColor = System.Drawing.Color.White;
-            this.calendarView1.ColorProvider = discreteWeightedColorProvider5;
+            this.calendarView1.ColorProvider = discreteWeightedColorProvider2;
             this.calendarView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calendarView1.DataSource = null;
             this.calendarView1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
