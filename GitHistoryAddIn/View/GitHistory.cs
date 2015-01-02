@@ -79,9 +79,9 @@ namespace GitHistoryAddIn.View
             commits.ForEach(x =>  { 
                 data.Add(new Commit {
                     Date = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd HH:mm:ss")), 
-                    Author = x.Author.Login, 
+                    Author = x.Committer.Login, 
                     Title = x.Commit.Message,
-                    AvatarUrl = x.Author.AvatarUrl
+                    AvatarUrl = x.Committer.AvatarUrl
                 });
             });
 
