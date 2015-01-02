@@ -60,7 +60,12 @@ namespace GitHistoryAddIn.View
             ContributionList data = new ContributionList();
 
             commits.ForEach(x =>  { 
-                data.Add(new Commit { Date = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd")), Author = x.Author.Login, Title = x.Commit.Message });
+                data.Add(new Commit { 
+                    Date = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd")), 
+                    Author = x.Author.Login, 
+                    Title = x.Commit.Message,
+                    AvatarUrl = x.Author.AvatarUrl
+                });
             });
 
             this.calendarView1.DataSource = data;
@@ -95,6 +100,7 @@ namespace GitHistoryAddIn.View
             this.authorLabel.Text = selectedCommit.Author;
             this.dateLabel.Text = selectedCommit.Date.ToString("yyyy-MM-dd HH:mm:ss");
             this.titleTextArea.Text = selectedCommit.Title;
+            this.avatarImage.Load(selectedCommit.AvatarUrl);
         }
     }
 }
