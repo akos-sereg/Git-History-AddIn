@@ -91,6 +91,12 @@ namespace GitHistoryAddIn.View
 
         public void AutoBind()
         {
+            if (this._projectBinding != null && this._projectBinding.IsValid)
+            {
+                // Auto binding already complete
+                return;
+            }
+
             List<GitProjectBinding> binding = this._bindingStore.GetBindings();
             GitProjectBinding matchingBinding = binding.FirstOrDefault(x => x.Solution == this.SolutionName);
 
