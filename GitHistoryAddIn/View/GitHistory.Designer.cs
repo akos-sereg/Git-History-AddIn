@@ -146,7 +146,7 @@
             // commitsLabel
             // 
             this.commitsLabel.AutoSize = true;
-            this.commitsLabel.Location = new System.Drawing.Point(779, 17);
+            this.commitsLabel.Location = new System.Drawing.Point(785, 17);
             this.commitsLabel.Name = "commitsLabel";
             this.commitsLabel.Size = new System.Drawing.Size(46, 13);
             this.commitsLabel.TabIndex = 6;

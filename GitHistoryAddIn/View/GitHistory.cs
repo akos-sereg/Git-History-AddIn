@@ -88,7 +88,14 @@ namespace GitHistoryAddIn.View
             this.calendarView1.DataSource = data;
             this.fileNameLabel.Text = SourceCodePath;
             this.fileNameLabel.ForeColor = Color.Black;
+
+            // Reset Commit details
             this.commitsComboBox.Items.Clear();
+            this.authorLabel.Text = string.Empty;
+            this.dateLabel.Text = string.Empty;
+            this.titleTextArea.Text = string.Empty;
+            this.avatarImage.Image = null;
+            this.commitsLabel.Text = "Commits";
         }
 
         public void AutoBind()
