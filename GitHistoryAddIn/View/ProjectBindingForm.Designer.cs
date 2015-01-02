@@ -38,6 +38,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.existingBindings = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
@@ -127,22 +128,30 @@
             this.existingBindings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.existingBindings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.existingBindings.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            this.existingBindings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.existingBindings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column3,
+            this.Column4,
             this.Column1,
             this.Column2});
+            this.existingBindings.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.existingBindings.Location = new System.Drawing.Point(317, 12);
             this.existingBindings.Name = "existingBindings";
+            this.existingBindings.RowHeadersVisible = false;
             this.existingBindings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.existingBindings.Size = new System.Drawing.Size(441, 157);
             this.existingBindings.TabIndex = 0;
+            this.existingBindings.SelectionChanged += new System.EventHandler(this.existingBindings_SelectionChanged);
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Git Username";
             this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Git Password";
+            this.Column4.Name = "Column4";
+            this.Column4.Visible = false;
             // 
             // Column1
             // 
@@ -183,6 +192,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ProjectBindingForm";
             this.Text = "Git Project Binding";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ProjectBindingForm_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).EndInit();
@@ -202,10 +212,11 @@
         private System.Windows.Forms.TextBox gitProjectName;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView existingBindings;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox solutionLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

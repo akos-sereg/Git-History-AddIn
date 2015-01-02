@@ -66,6 +66,9 @@ namespace GitHistoryAddIn.View
                 return;
             }
 
+            this.fileNameLabel.ForeColor = Color.Black;
+            this.fileNameLabel.Text = string.Format("Binded to Git Project {0}", _projectBinding.ProjectName);
+
             if (!string.IsNullOrEmpty(this.SourceCodePath))
             {
                 new GitClient().GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, SourceCodePath, OnCommitsReturned);
