@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider1 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Properties.Resources));
             this.gitProjectBindingLink = new System.Windows.Forms.LinkLabel();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -40,8 +41,10 @@
             this.commitsComboBox = new System.Windows.Forms.ComboBox();
             this.commitsLabel = new System.Windows.Forms.Label();
             this.calendarView1 = new ContributionGraph.CalendarView();
+            this.gitItemIcon = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gitItemIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // gitProjectBindingLink
@@ -58,7 +61,7 @@
             // fileNameLabel
             // 
             this.fileNameLabel.AutoSize = true;
-            this.fileNameLabel.Location = new System.Drawing.Point(9, 14);
+            this.fileNameLabel.Location = new System.Drawing.Point(34, 14);
             this.fileNameLabel.Name = "fileNameLabel";
             this.fileNameLabel.Size = new System.Drawing.Size(27, 13);
             this.fileNameLabel.TabIndex = 4;
@@ -169,10 +172,20 @@
             this.calendarView1.Size = new System.Drawing.Size(761, 131);
             this.calendarView1.TabIndex = 2;
             // 
+            // gitItemIcon
+            // 
+            this.gitItemIcon.Image = ((System.Drawing.Image)(resources.GetObject("ProjectIcon")));
+            this.gitItemIcon.Location = new System.Drawing.Point(12, 12);
+            this.gitItemIcon.Name = "gitItemIcon";
+            this.gitItemIcon.Size = new System.Drawing.Size(16, 16);
+            this.gitItemIcon.TabIndex = 7;
+            this.gitItemIcon.TabStop = false;
+            // 
             // GitHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gitItemIcon);
             this.Controls.Add(this.commitsLabel);
             this.Controls.Add(this.commitsComboBox);
             this.Controls.Add(this.groupBox1);
@@ -184,6 +197,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gitItemIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,5 +216,6 @@
         private System.Windows.Forms.Label commitsLabel;
         private System.Windows.Forms.RichTextBox titleTextArea;
         private System.Windows.Forms.PictureBox avatarImage;
+        private System.Windows.Forms.PictureBox gitItemIcon;
     }
 }

@@ -73,6 +73,11 @@
     <Compile Include="Controller\GitClient.cs" />
     <Compile Include="Model\GitProjectBinding.cs" />
     <Compile Include="Model\SelectedFile.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="View\GitHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,11 +154,15 @@
     <Content Include="GitHistoryAddIn.AddIn">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\source-code.png" />
+    <None Include="Resources\csproj.png" />
+    <None Include="Resources\folder-icon.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="View\GitHistory.resx">
-      <DependentUpon>GitHistory.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ProjectBindingForm.resx">
       <DependentUpon>ProjectBindingForm.cs</DependentUpon>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,35 @@ namespace GitHistoryAddIn.View
             }
         }
 
-        public string SourceCodePath { get; set; }
+        private string _sourceCodePath;
+        public string SourceCodePath
+        {
+            get
+            {
+                return _sourceCodePath;
+            }
+            set
+            {
+                this._sourceCodePath = value;
+
+                if (!string.IsNullOrEmpty(this._sourceCodePath))
+                {
+                    ComponentResourceManager resources = new ComponentResourceManager(typeof(Properties.Resources));
+                    if (Path.HasExtension(this._sourceCodePath))
+                    {
+                        this.gitItemIcon.Image = ((System.Drawing.Image)(resources.GetObject("SourceIcon")));
+                    }
+                    else if (this._sourceCodePath.ToCharArray().Where(x => x == '\\' || x == '/').Count() < 1)
+                    {
+                        this.gitItemIcon.Image = ((System.Drawing.Image)(resources.GetObject("ProjectIcon")));
+                    }
+                    else
+                    {
+                        this.gitItemIcon.Image = ((System.Drawing.Image)(resources.GetObject("FolderIcon")));
+                    }
+                }
+            }
+        }
 
         public GitHistory()
         {
@@ -65,9 +94,6 @@ namespace GitHistoryAddIn.View
                 this.fileNameLabel.Text = "Project Binding is not set";
                 return;
             }
-
-            this.fileNameLabel.ForeColor = Color.Black;
-            this.fileNameLabel.Text = string.Format("Binded to Git Project {0}", _projectBinding.ProjectName);
 
             if (!string.IsNullOrEmpty(this.SourceCodePath))
             {
