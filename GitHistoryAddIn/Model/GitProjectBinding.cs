@@ -15,6 +15,8 @@ namespace GitHistoryAddIn.Model
 
         public string Solution { get; set; }
 
+        public string ProjectAuthor { get; set; }
+
         public string ProjectName { get; set; }
 
         public bool IsValid

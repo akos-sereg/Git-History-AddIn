@@ -97,7 +97,7 @@ namespace GitHistoryAddIn.View
 
             if (this.SelectedGitItem != null && !string.IsNullOrEmpty(this.SelectedGitItem.Path))
             {
-                new GitClient().GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, this.SelectedGitItem.Path, OnCommitsReturned);
+                new GitClient().GetCommits(_projectBinding, this.SelectedGitItem.Path, OnCommitsReturned);
             }
         }
 

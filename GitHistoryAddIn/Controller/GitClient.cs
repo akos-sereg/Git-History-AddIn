@@ -1,4 +1,6 @@
-﻿using GitHubSharp;
+﻿using GitHistoryAddIn.Model;
+using GitHistoryAddIn.View;
+using GitHubSharp;
 using GitHubSharp.Controllers;
 using GitHubSharp.Models;
 using System;
@@ -11,11 +13,11 @@ namespace GitHistoryAddIn.Controller
 {
     public class GitClient
     {
-        public async void GetCommits(string gitUser, string gitPassword, string gitRepo, string gitFilePath, GitHistoryAddIn.View.GitHistory.ProcessCommits onReturned)
+        public async void GetCommits(GitProjectBinding binding, string gitFilePath, GitHistory.ProcessCommits onReturned)
         {
-            GitHubSharp.Client client = GitHubSharp.Client.Basic(gitUser, gitPassword);
+            GitHubSharp.Client client = GitHubSharp.Client.Basic(binding.GitUsername, binding.GitPassword);
 
-            RepositoryController repoController = new RepositoryController(client, gitUser, gitRepo);
+            RepositoryController repoController = new RepositoryController(client, binding.ProjectAuthor, binding.ProjectName);
 
             CommitsController commitsCtr = new CommitsController(client, repoController);
             commitsCtr.FilePath = gitFilePath;

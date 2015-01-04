@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gitProjectAuthor = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.gitPassword = new System.Windows.Forms.TextBox();
             this.gitUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +51,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.gitProjectAuthor);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.gitPassword);
             this.groupBox1.Controls.Add(this.gitUsername);
             this.groupBox1.Controls.Add(this.label2);
@@ -57,24 +61,40 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(286, 109);
+            this.groupBox1.Size = new System.Drawing.Size(286, 140);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Git";
             // 
+            // gitProjectAuthor
+            // 
+            this.gitProjectAuthor.Location = new System.Drawing.Point(96, 74);
+            this.gitProjectAuthor.Name = "gitProjectAuthor";
+            this.gitProjectAuthor.Size = new System.Drawing.Size(163, 20);
+            this.gitProjectAuthor.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 77);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Project Author";
+            // 
             // gitPassword
             // 
-            this.gitPassword.Location = new System.Drawing.Point(80, 48);
+            this.gitPassword.Location = new System.Drawing.Point(96, 48);
             this.gitPassword.Name = "gitPassword";
             this.gitPassword.PasswordChar = '*';
-            this.gitPassword.Size = new System.Drawing.Size(179, 20);
+            this.gitPassword.Size = new System.Drawing.Size(163, 20);
             this.gitPassword.TabIndex = 3;
             // 
             // gitUsername
             // 
-            this.gitUsername.Location = new System.Drawing.Point(80, 24);
+            this.gitUsername.Location = new System.Drawing.Point(96, 24);
             this.gitUsername.Name = "gitUsername";
-            this.gitUsername.Size = new System.Drawing.Size(179, 20);
+            this.gitUsername.Size = new System.Drawing.Size(163, 20);
             this.gitUsername.TabIndex = 2;
             // 
             // label2
@@ -88,19 +108,19 @@
             // 
             // gitProjectName
             // 
-            this.gitProjectName.Location = new System.Drawing.Point(80, 74);
+            this.gitProjectName.Location = new System.Drawing.Point(96, 99);
             this.gitProjectName.Name = "gitProjectName";
-            this.gitProjectName.Size = new System.Drawing.Size(179, 20);
-            this.gitProjectName.TabIndex = 4;
+            this.gitProjectName.Size = new System.Drawing.Size(163, 20);
+            this.gitProjectName.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 77);
+            this.label3.Location = new System.Drawing.Point(6, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Project";
+            this.label3.Text = "Project Name";
             // 
             // label1
             // 
@@ -113,7 +133,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(223, 129);
+            this.button1.Location = new System.Drawing.Point(223, 156);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
@@ -138,7 +158,7 @@
             this.existingBindings.Name = "existingBindings";
             this.existingBindings.RowHeadersVisible = false;
             this.existingBindings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.existingBindings.Size = new System.Drawing.Size(441, 157);
+            this.existingBindings.Size = new System.Drawing.Size(441, 167);
             this.existingBindings.TabIndex = 0;
             this.existingBindings.SelectionChanged += new System.EventHandler(this.existingBindings_SelectionChanged);
             // 
@@ -166,24 +186,24 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 134);
+            this.label4.Location = new System.Drawing.Point(18, 161);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Solution";
+            this.label4.Text = "Local Solution";
             // 
             // solutionTextBox
             // 
-            this.solutionTextBox.Location = new System.Drawing.Point(92, 131);
+            this.solutionTextBox.Location = new System.Drawing.Point(108, 158);
             this.solutionTextBox.Name = "solutionTextBox";
-            this.solutionTextBox.Size = new System.Drawing.Size(125, 20);
-            this.solutionTextBox.TabIndex = 5;
+            this.solutionTextBox.Size = new System.Drawing.Size(109, 20);
+            this.solutionTextBox.TabIndex = 6;
             // 
             // ProjectBindingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 185);
+            this.ClientSize = new System.Drawing.Size(776, 194);
             this.Controls.Add(this.solutionTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.existingBindings);
@@ -218,5 +238,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.TextBox gitProjectAuthor;
+        private System.Windows.Forms.Label label5;
     }
 }
