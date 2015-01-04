@@ -45,7 +45,7 @@
             this.gitHistory1.Name = "gitHistory1";
             this.gitHistory1.Size = new System.Drawing.Size(1124, 187);
             this.gitHistory1.SolutionName = null;
-            this.gitHistory1.SourceCodePath = null;
+            this.gitHistory1.SelectedGitItem = null;
             this.gitHistory1.TabIndex = 0;
             // 
             // label1

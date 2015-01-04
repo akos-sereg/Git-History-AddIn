@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Controller\BindingStore.cs" />
     <Compile Include="Controller\GitClient.cs" />
+    <Compile Include="Model\GitItem.cs" />
     <Compile Include="Model\GitProjectBinding.cs" />
     <Compile Include="Model\SelectedFile.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

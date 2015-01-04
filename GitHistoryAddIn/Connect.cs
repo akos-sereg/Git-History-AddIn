@@ -77,8 +77,7 @@ namespace GitHistoryAddIn
                 GitHistory historyWindow = (GitHistory)toolWindow.Object;
                 historyWindow.SolutionName = Path.GetFileNameWithoutExtension(_applicationObject.Solution.FullName);
 
-                string sourcePath = relativePath.Replace(@"\", @"/").Remove(0, 1);
-                RefreshSourceCodePath(historyWindow, relativePath);
+                RefreshSourceCodePath(historyWindow, new GitItem { Path = relativePath, Type = GitItem.GitItemType.SourceCode });
             }
             catch (Exception err)
             {
@@ -131,7 +130,10 @@ namespace GitHistoryAddIn
 
                         if (selectedFiles.Count > 0)
                         {
-                            RefreshSourceCodePath(historyWindow, selectedFiles[0].FriendlyFilePath);
+                            RefreshSourceCodePath(historyWindow, new GitItem { 
+                                Path = selectedFiles[0].FriendlyFilePath,
+                                Type = Path.HasExtension(selectedFiles[0].FriendlyFilePath) ? GitItem.GitItemType.SourceCode : GitItem.GitItemType.Folder
+                            }); 
                         }
                     }
                     catch (Exception err)
@@ -158,7 +160,7 @@ namespace GitHistoryAddIn
 
                         if (!string.IsNullOrEmpty(selectedProject))
                         {
-                            RefreshSourceCodePath(historyWindow, selectedProject);
+                            RefreshSourceCodePath(historyWindow, new GitItem { Path = selectedProject, Type = GitItem.GitItemType.Project });
                         }
                     }
                     catch (Exception err)
@@ -169,12 +171,12 @@ namespace GitHistoryAddIn
             }
         }
 
-        private void RefreshSourceCodePath(GitHistory historyWindow, string relativePath)
+        private void RefreshSourceCodePath(GitHistory historyWindow, GitItem gitItem)
         {
-            string sourcePath = relativePath.Replace(@"\", @"/").Remove(0, 1);
-            if (sourcePath != historyWindow.SourceCodePath)
+            gitItem.Path = gitItem.Path.Replace(@"\", @"/").Remove(0, 1);
+            if (historyWindow.SelectedGitItem == null || gitItem.Path != historyWindow.SelectedGitItem.Path)
             {
-                historyWindow.SourceCodePath = sourcePath;
+                historyWindow.SelectedGitItem = gitItem;
                 historyWindow.LoadHistory();
             }
         }

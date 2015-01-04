@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GitHistoryAddIn.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,7 @@ namespace GitHistoryAddInTest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.gitHistory1.SourceCodePath = textBox1.Text;
+            this.gitHistory1.SelectedGitItem = new GitItem { Path = textBox1.Text, Type = GitItem.GitItemType.SourceCode };
             this.gitHistory1.LoadHistory();
         }
 

@@ -36,29 +36,29 @@ namespace GitHistoryAddIn.View
             }
         }
 
-        private string _sourceCodePath;
-        public string SourceCodePath
+        private GitItem _selectedGitItem;
+        public GitItem SelectedGitItem
         {
             get
             {
-                return _sourceCodePath;
+                return _selectedGitItem;
             }
             set
             {
-                this._sourceCodePath = value;
+                this._selectedGitItem = value;
 
-                if (!string.IsNullOrEmpty(this._sourceCodePath))
+                if (_selectedGitItem != null)
                 {
                     ComponentResourceManager resources = new ComponentResourceManager(typeof(Properties.Resources));
-                    if (Path.HasExtension(this._sourceCodePath))
+                    if (_selectedGitItem.Type == GitItem.GitItemType.SourceCode)
                     {
                         this.gitItemIcon.Image = ((System.Drawing.Image)(resources.GetObject("SourceIcon")));
                     }
-                    else if (this._sourceCodePath.ToCharArray().Where(x => x == '\\' || x == '/').Count() < 1)
+                    else if (_selectedGitItem.Type == GitItem.GitItemType.Project)
                     {
                         this.gitItemIcon.Image = ((System.Drawing.Image)(resources.GetObject("ProjectIcon")));
                     }
-                    else
+                    else if (_selectedGitItem.Type == GitItem.GitItemType.Folder)
                     {
                         this.gitItemIcon.Image = ((System.Drawing.Image)(resources.GetObject("FolderIcon")));
                     }
@@ -95,9 +95,9 @@ namespace GitHistoryAddIn.View
                 return;
             }
 
-            if (!string.IsNullOrEmpty(this.SourceCodePath))
+            if (this.SelectedGitItem != null && !string.IsNullOrEmpty(this.SelectedGitItem.Path))
             {
-                new GitClient().GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, SourceCodePath, OnCommitsReturned);
+                new GitClient().GetCommits(_projectBinding.GitUsername, _projectBinding.GitPassword, _projectBinding.ProjectName, this.SelectedGitItem.Path, OnCommitsReturned);
             }
         }
 
@@ -115,7 +115,7 @@ namespace GitHistoryAddIn.View
             });
 
             this.calendarView1.DataSource = data;
-            this.fileNameLabel.Text = SourceCodePath;
+            this.fileNameLabel.Text = this.SelectedGitItem.Path;
             this.fileNameLabel.ForeColor = Color.Black;
 
             // Reset Commit details
