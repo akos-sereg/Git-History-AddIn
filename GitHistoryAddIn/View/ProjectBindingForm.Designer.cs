@@ -42,7 +42,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
-            this.solutionLabel = new System.Windows.Forms.TextBox();
+            this.solutionTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).BeginInit();
             this.SuspendLayout();
@@ -172,20 +172,19 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Solution";
             // 
-            // solutionLabel
+            // solutionTextBox
             // 
-            this.solutionLabel.Location = new System.Drawing.Point(92, 131);
-            this.solutionLabel.Name = "solutionLabel";
-            this.solutionLabel.ReadOnly = true;
-            this.solutionLabel.Size = new System.Drawing.Size(125, 20);
-            this.solutionLabel.TabIndex = 5;
+            this.solutionTextBox.Location = new System.Drawing.Point(92, 131);
+            this.solutionTextBox.Name = "solutionTextBox";
+            this.solutionTextBox.Size = new System.Drawing.Size(125, 20);
+            this.solutionTextBox.TabIndex = 5;
             // 
             // ProjectBindingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 185);
-            this.Controls.Add(this.solutionLabel);
+            this.Controls.Add(this.solutionTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.existingBindings);
             this.Controls.Add(this.button1);
@@ -213,7 +212,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView existingBindings;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox solutionLabel;
+        private System.Windows.Forms.TextBox solutionTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;

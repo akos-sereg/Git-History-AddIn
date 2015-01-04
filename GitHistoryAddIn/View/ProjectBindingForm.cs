@@ -26,7 +26,7 @@ namespace GitHistoryAddIn.View
                     this.gitUsername.Text = _projectBinding.GitUsername;
                     this.gitPassword.Text = _projectBinding.GitPassword;
                     this.gitProjectName.Text = _projectBinding.ProjectName;
-                    this.solutionLabel.Text = _projectBinding.Solution;
+                    this.solutionTextBox.Text = _projectBinding.Solution;
                 }
             }
         }
@@ -52,6 +52,7 @@ namespace GitHistoryAddIn.View
             ProjectBinding.GitUsername = gitUsername.Text;
             ProjectBinding.GitPassword = gitPassword.Text;
             ProjectBinding.ProjectName = gitProjectName.Text;
+            ProjectBinding.Solution = solutionTextBox.Text;
 
             if (ProjectBinding.IsValid)
             {
