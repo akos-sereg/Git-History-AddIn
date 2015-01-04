@@ -1,8 +1,6 @@
 ﻿using GitHistoryAddIn.Model;
 using GitHistoryAddIn.View;
-using GitHubSharp;
-using GitHubSharp.Controllers;
-using GitHubSharp.Models;
+using Octokit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +11,20 @@ namespace GitHistoryAddIn.Controller
 {
     public class GitClient
     {
-        public async void GetCommits(GitProjectBinding binding, string gitFilePath, GitHistory.ProcessCommits onReturned)
+        private GitProjectBinding binding;
+        
+        public GitClient(GitProjectBinding binding)
         {
-            GitHubSharp.Client client = GitHubSharp.Client.Basic(binding.GitUsername, binding.GitPassword);
+            this.binding = binding;
+        }
 
-            RepositoryController repoController = new RepositoryController(client, binding.ProjectAuthor, binding.ProjectName);
-
-            CommitsController commitsCtr = new CommitsController(client, repoController);
-            commitsCtr.FilePath = gitFilePath;
-            GitHubRequest<List<CommitModel>> commits = commitsCtr.GetAll();
+        public async void GetCommits(string gitFilePath, GitHistory.ProcessCommits onReturned)
+        {
+            var github = new GitHubClient(new ProductHeaderValue("GitHistoryAddIn"));
+            github.Credentials = new Credentials(this.binding.GitUsername, this.binding.GitPassword);
+            IReadOnlyList<GitHubCommit> commits = await github.Repository.Commits.GetAll(binding.ProjectAuthor, binding.ProjectName, new CommitRequest { Path = gitFilePath });
             
-            GitHubResponse<List<CommitModel>> response = await client.ExecuteAsync(commits);
-
-            onReturned(response.Data);
+            onReturned(commits);
         }
     }
 }

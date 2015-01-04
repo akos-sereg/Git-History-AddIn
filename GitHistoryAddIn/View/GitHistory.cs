@@ -1,7 +1,7 @@
 ﻿using ContributionGraph.Model;
 using GitHistoryAddIn.Controller;
 using GitHistoryAddIn.Model;
-using GitHubSharp.Models;
+using Octokit;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ namespace GitHistoryAddIn.View
 {
     public partial class GitHistory : UserControl
     {
-        public delegate void ProcessCommits(List<CommitModel> commits);
+        public delegate void ProcessCommits(IReadOnlyList<GitHubCommit> commits);
 
         public GitProjectBinding _projectBinding;
 
@@ -97,16 +97,16 @@ namespace GitHistoryAddIn.View
 
             if (this.SelectedGitItem != null && !string.IsNullOrEmpty(this.SelectedGitItem.Path))
             {
-                new GitClient().GetCommits(_projectBinding, this.SelectedGitItem.Path, OnCommitsReturned);
+                new GitClient(_projectBinding).GetCommits(this.SelectedGitItem.Path, OnCommitsReturned);
             }
         }
 
-        public void OnCommitsReturned(List<CommitModel> commits)
+        public void OnCommitsReturned(IReadOnlyList<GitHubCommit> commits)
         {
             ContributionList data = new ContributionList();
 
-            commits.ForEach(x =>  { 
-                data.Add(new Commit {
+            commits.ToList().ForEach(x =>  { 
+                data.Add(new ContributionGraph.Model.Commit {
                     Date = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd HH:mm:ss")), 
                     Author = x.Committer.Login, 
                     Title = x.Commit.Message,
@@ -174,10 +174,10 @@ namespace GitHistoryAddIn.View
 
         private void commitsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Commit selectedCommit = null;
+            ContributionGraph.Model.Commit selectedCommit = null;
             if (this.commitsComboBox.SelectedItem != null)
             {
-                selectedCommit = (Commit)this.commitsComboBox.SelectedItem;
+                selectedCommit = (ContributionGraph.Model.Commit)this.commitsComboBox.SelectedItem;
             }
 
             if (selectedCommit == null)
