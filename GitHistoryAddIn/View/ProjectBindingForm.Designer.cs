@@ -192,6 +192,7 @@
             this.Name = "ProjectBindingForm";
             this.Text = "Git Project Binding";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ProjectBindingForm_FormClosed);
+            this.Load += new System.EventHandler(this.ProjectBindingForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).EndInit();

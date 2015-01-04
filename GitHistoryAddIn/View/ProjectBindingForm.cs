@@ -31,9 +31,12 @@ namespace GitHistoryAddIn.View
             }
         }
 
+        private GitProjectBinding _originalBinding;
+
         public ProjectBindingForm(GitProjectBinding projectBinding, BindingStore bindingStore)
         {
             this._bindingStore = bindingStore;
+            this._originalBinding = projectBinding;
 
             if (projectBinding == null)
             {
@@ -41,9 +44,6 @@ namespace GitHistoryAddIn.View
             }
 
             InitializeComponent();
-
-            ProjectBinding = projectBinding;
-
             PopulateExistingBindings();
         }
 
@@ -102,6 +102,11 @@ namespace GitHistoryAddIn.View
 
             this.ProjectBinding = null;
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        private void ProjectBindingForm_Load(object sender, EventArgs e)
+        {
+            ProjectBinding = this._originalBinding;
         }
     }
 }

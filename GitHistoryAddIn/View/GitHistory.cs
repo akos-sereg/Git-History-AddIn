@@ -159,7 +159,10 @@ namespace GitHistoryAddIn.View
                 this._projectBinding = new GitProjectBinding();
             }
 
-            this._projectBinding.Solution = this.SolutionName;
+            if (string.IsNullOrEmpty(this._projectBinding.Solution))
+            {
+                this._projectBinding.Solution = this.SolutionName;
+            }
 
             ProjectBindingForm bindingForm = new ProjectBindingForm(this._projectBinding, this._bindingStore);
             bindingForm.ShowDialog();
