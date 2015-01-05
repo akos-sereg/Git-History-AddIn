@@ -164,7 +164,7 @@
             this.calendarView1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.calendarView1.DefaultColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.calendarView1.DisplayedWeeks = 53;
-            this.calendarView1.EndDate = new System.DateTime(2014, 12, 26, 14, 1, 47, 52);
+            //this.calendarView1.EndDate = System.DateTime.Now;
             this.calendarView1.Location = new System.Drawing.Point(12, 41);
             this.calendarView1.MaximumSize = new System.Drawing.Size(761, 131);
             this.calendarView1.MinimumSize = new System.Drawing.Size(761, 131);
