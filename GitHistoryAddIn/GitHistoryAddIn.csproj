@@ -166,6 +166,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\GitHistory.resx">
+      <DependentUpon>GitHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ProjectBindingForm.resx">
       <DependentUpon>ProjectBindingForm.cs</DependentUpon>
     </EmbeddedResource>

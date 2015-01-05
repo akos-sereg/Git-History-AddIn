@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider1 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Properties.Resources));
             this.gitProjectBindingLink = new System.Windows.Forms.LinkLabel();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,6 +41,7 @@
             this.commitsLabel = new System.Windows.Forms.Label();
             this.calendarView1 = new ContributionGraph.CalendarView();
             this.gitItemIcon = new System.Windows.Forms.PictureBox();
+            this.refreshOnWindowActivation = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gitItemIcon)).BeginInit();
@@ -50,7 +50,7 @@
             // gitProjectBindingLink
             // 
             this.gitProjectBindingLink.AutoSize = true;
-            this.gitProjectBindingLink.Location = new System.Drawing.Point(683, 14);
+            this.gitProjectBindingLink.Location = new System.Drawing.Point(683, 17);
             this.gitProjectBindingLink.Name = "gitProjectBindingLink";
             this.gitProjectBindingLink.Size = new System.Drawing.Size(90, 13);
             this.gitProjectBindingLink.TabIndex = 3;
@@ -164,7 +164,7 @@
             this.calendarView1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.calendarView1.DefaultColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.calendarView1.DisplayedWeeks = 53;
-            //this.calendarView1.EndDate = System.DateTime.Now;
+            this.calendarView1.EndDate = System.DateTime.Now;
             this.calendarView1.Location = new System.Drawing.Point(12, 41);
             this.calendarView1.MaximumSize = new System.Drawing.Size(761, 131);
             this.calendarView1.MinimumSize = new System.Drawing.Size(761, 131);
@@ -174,17 +174,27 @@
             // 
             // gitItemIcon
             // 
-            this.gitItemIcon.Image = ((System.Drawing.Image)(resources.GetObject("ProjectIcon")));
             this.gitItemIcon.Location = new System.Drawing.Point(12, 12);
             this.gitItemIcon.Name = "gitItemIcon";
             this.gitItemIcon.Size = new System.Drawing.Size(16, 16);
             this.gitItemIcon.TabIndex = 7;
             this.gitItemIcon.TabStop = false;
             // 
+            // refreshOnWindowActivation
+            // 
+            this.refreshOnWindowActivation.AutoSize = true;
+            this.refreshOnWindowActivation.Location = new System.Drawing.Point(494, 16);
+            this.refreshOnWindowActivation.Name = "refreshOnWindowActivation";
+            this.refreshOnWindowActivation.Size = new System.Drawing.Size(166, 17);
+            this.refreshOnWindowActivation.TabIndex = 8;
+            this.refreshOnWindowActivation.Text = "Refresh on window activation";
+            this.refreshOnWindowActivation.UseVisualStyleBackColor = true;
+            // 
             // GitHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.refreshOnWindowActivation);
             this.Controls.Add(this.gitItemIcon);
             this.Controls.Add(this.commitsLabel);
             this.Controls.Add(this.commitsComboBox);
@@ -217,5 +227,6 @@
         private System.Windows.Forms.RichTextBox titleTextArea;
         private System.Windows.Forms.PictureBox avatarImage;
         private System.Windows.Forms.PictureBox gitItemIcon;
+        private System.Windows.Forms.CheckBox refreshOnWindowActivation;
     }
 }

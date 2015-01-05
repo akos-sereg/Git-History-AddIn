@@ -23,6 +23,14 @@ namespace GitHistoryAddIn.View
 
         public BindingStore _bindingStore = new BindingStore();
 
+        public bool RefreshOnWindowActivation
+        {
+            get
+            {
+                return this.refreshOnWindowActivation.Checked;
+            }
+        }
+
         private string _solutionName;
         public string SolutionName {
             get

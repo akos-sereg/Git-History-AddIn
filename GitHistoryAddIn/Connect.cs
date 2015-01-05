@@ -77,7 +77,10 @@ namespace GitHistoryAddIn
                 GitHistory historyWindow = (GitHistory)toolWindow.Object;
                 historyWindow.SolutionName = Path.GetFileNameWithoutExtension(_applicationObject.Solution.FullName);
 
-                RefreshSourceCodePath(historyWindow, new GitItem { Path = relativePath, Type = GitItem.GitItemType.SourceCode });
+                if (historyWindow.RefreshOnWindowActivation)
+                {
+                    RefreshSourceCodePath(historyWindow, new GitItem { Path = relativePath, Type = GitItem.GitItemType.SourceCode });
+                }
             }
             catch (Exception err)
             {
