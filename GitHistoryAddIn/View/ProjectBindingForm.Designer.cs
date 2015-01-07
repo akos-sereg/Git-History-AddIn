@@ -48,6 +48,8 @@
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.solutionTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.testFilePathLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).BeginInit();
             this.gridContextMenu.SuspendLayout();
@@ -76,6 +78,7 @@
             this.gitProjectAuthor.Name = "gitProjectAuthor";
             this.gitProjectAuthor.Size = new System.Drawing.Size(163, 20);
             this.gitProjectAuthor.TabIndex = 4;
+            this.gitProjectAuthor.TextChanged += new System.EventHandler(this.gitProjectAuthor_TextChanged);
             // 
             // label5
             // 
@@ -116,6 +119,7 @@
             this.gitProjectName.Name = "gitProjectName";
             this.gitProjectName.Size = new System.Drawing.Size(163, 20);
             this.gitProjectName.TabIndex = 5;
+            this.gitProjectName.TextChanged += new System.EventHandler(this.gitProjectName_TextChanged);
             // 
             // label3
             // 
@@ -217,12 +221,33 @@
             this.solutionTextBox.Name = "solutionTextBox";
             this.solutionTextBox.Size = new System.Drawing.Size(109, 20);
             this.solutionTextBox.TabIndex = 6;
+            this.solutionTextBox.TextChanged += new System.EventHandler(this.solutionTextBox_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 195);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Test file path:";
+            // 
+            // testFilePathLabel
+            // 
+            this.testFilePathLabel.AutoSize = true;
+            this.testFilePathLabel.Location = new System.Drawing.Point(95, 195);
+            this.testFilePathLabel.Name = "testFilePathLabel";
+            this.testFilePathLabel.Size = new System.Drawing.Size(27, 13);
+            this.testFilePathLabel.TabIndex = 8;
+            this.testFilePathLabel.Text = "N/A";
             // 
             // ProjectBindingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 194);
+            this.ClientSize = new System.Drawing.Size(776, 227);
+            this.Controls.Add(this.testFilePathLabel);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.solutionTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.existingBindings);
@@ -262,5 +287,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ContextMenuStrip gridContextMenu;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label testFilePathLabel;
     }
 }

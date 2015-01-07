@@ -75,7 +75,7 @@ namespace GitHistoryAddIn.View
 
         #endregion
 
-        #region UI Event Handlers
+        #region UI Events
         
         private void okButton_Click(object sender, EventArgs e)
         {
@@ -135,6 +135,26 @@ namespace GitHistoryAddIn.View
             {
                 MessageBox.Show("There is no binding selected", "Remove Binding", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void UpdateTestFilepath()
+        {
+            testFilePathLabel.Text = string.Format("http://github.com/{0}/{1}/{2}.sln", this.gitProjectAuthor.Text, this.gitProjectName.Text, this.solutionTextBox.Text);
+        }
+
+        private void gitProjectAuthor_TextChanged(object sender, EventArgs e)
+        {
+            UpdateTestFilepath();
+        }
+
+        private void gitProjectName_TextChanged(object sender, EventArgs e)
+        {
+            UpdateTestFilepath();
+        }
+
+        private void solutionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateTestFilepath();
         }
 
         #endregion
