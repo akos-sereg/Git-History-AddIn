@@ -8,9 +8,17 @@ namespace GitHistoryAddIn.View
 {
     public partial class ProjectBindingForm : Form
     {
+        #region Fields
+
+        private GitProjectBinding _originalBinding;
+
         private GitProjectBinding _projectBinding;
 
         private BindingStore _bindingStore;
+
+        #endregion
+
+        #region Properties
 
         public GitProjectBinding ProjectBinding
         {
@@ -32,7 +40,9 @@ namespace GitHistoryAddIn.View
             }
         }
 
-        private GitProjectBinding _originalBinding;
+        #endregion
+
+        #region Constructors
 
         public ProjectBindingForm(GitProjectBinding projectBinding, BindingStore bindingStore)
         {
@@ -48,7 +58,26 @@ namespace GitHistoryAddIn.View
             PopulateExistingBindings();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Initialize
+
+        private void PopulateExistingBindings()
+        {
+            List<GitProjectBinding> bindings = _bindingStore.GetBindings();
+
+            this.existingBindings.Rows.Clear();
+
+            bindings.ForEach(x => {
+                this.existingBindings.Rows.Add(x.GitUsername, x.GitPassword, x.ProjectName, x.Solution);
+            });
+        }
+
+        #endregion
+
+        #region UI Event Handlers
+        
+        private void okButton_Click(object sender, EventArgs e)
         {
             ProjectBinding.GitUsername = gitUsername.Text;
             ProjectBinding.GitPassword = gitPassword.Text;
@@ -63,17 +92,6 @@ namespace GitHistoryAddIn.View
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
-        }
-
-        private void PopulateExistingBindings()
-        {
-            List<GitProjectBinding> bindings = _bindingStore.GetBindings();
-
-            this.existingBindings.Rows.Clear();
-
-            bindings.ForEach(x => {
-                this.existingBindings.Rows.Add(x.GitUsername, x.GitPassword, x.ProjectName, x.Solution);
-            });
         }
 
         private void existingBindings_SelectionChanged(object sender, EventArgs e)
@@ -119,6 +137,10 @@ namespace GitHistoryAddIn.View
             }
         }
 
+        #endregion
+
+        #region Helpers
+
         /// <summary>
         /// Get selected binding from Grid
         /// </summary>
@@ -138,5 +160,7 @@ namespace GitHistoryAddIn.View
 
             return selectedBinding;
         }
+
+        #endregion
     }
 }

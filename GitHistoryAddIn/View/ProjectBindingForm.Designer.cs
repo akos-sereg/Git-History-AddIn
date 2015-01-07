@@ -38,16 +38,16 @@
             this.gitProjectName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
             this.existingBindings = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.solutionTextBox = new System.Windows.Forms.TextBox();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).BeginInit();
             this.gridContextMenu.SuspendLayout();
@@ -135,15 +135,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Username";
             // 
-            // button1
+            // okButton
             // 
-            this.button1.Location = new System.Drawing.Point(223, 156);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.okButton.Location = new System.Drawing.Point(223, 156);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 5;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // existingBindings
             // 
@@ -193,7 +193,14 @@
             this.gridContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.removeToolStripMenuItem});
             this.gridContextMenu.Name = "gridContextMenu";
-            this.gridContextMenu.Size = new System.Drawing.Size(153, 48);
+            this.gridContextMenu.Size = new System.Drawing.Size(118, 26);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // label4
             // 
@@ -211,13 +218,6 @@
             this.solutionTextBox.Size = new System.Drawing.Size(109, 20);
             this.solutionTextBox.TabIndex = 6;
             // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.removeToolStripMenuItem.Text = "Remove";
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
-            // 
             // ProjectBindingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,7 +226,7 @@
             this.Controls.Add(this.solutionTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.existingBindings);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.groupBox1);
             this.Name = "ProjectBindingForm";
             this.Text = "Git Project Binding";
@@ -250,7 +250,7 @@
         private System.Windows.Forms.TextBox gitPassword;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox gitProjectName;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.DataGridView existingBindings;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox solutionTextBox;

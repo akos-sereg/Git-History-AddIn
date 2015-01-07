@@ -17,17 +17,8 @@ namespace GitHistoryAddIn.View
 {
     public partial class GitHistory : UserControl
     {
-        public delegate void ProcessCommits(IReadOnlyList<GitHubCommit> commits);
 
-        public delegate void ProcessCommitsError(Exception error);
-
-        public delegate void BindingValidationComplete(bool bindingIsValid, string testPath, GitProjectBinding binding);
-
-        public delegate void BindingValidationError(Exception error);
-
-        public GitProjectBinding _projectBinding;
-
-        public BindingStore _bindingStore = new BindingStore();
+        #region Properties
 
         public bool RefreshOnWindowActivation
         {
@@ -80,6 +71,10 @@ namespace GitHistoryAddIn.View
             }
         }
 
+        #endregion
+
+        #region Constructors
+
         public GitHistory()
         {
             InitializeComponent();
@@ -99,6 +94,14 @@ namespace GitHistoryAddIn.View
                 }
             };
         }
+
+        #endregion
+
+        #region Feature - Load History
+
+        public delegate void ProcessCommits(IReadOnlyList<GitHubCommit> commits);
+
+        public delegate void ProcessCommitsError(Exception error);
 
         public void LoadHistory()
         {
@@ -145,6 +148,18 @@ namespace GitHistoryAddIn.View
         {
             MessageBox.Show(string.Format("Commits could not be fetched from GitHub: {0}", error.Message), "Commit Fetching error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        #endregion
+
+        #region Feature - Binding
+        
+        public delegate void BindingValidationComplete(bool bindingIsValid, string testPath, GitProjectBinding binding);
+
+        public delegate void BindingValidationError(Exception error);
+
+        public BindingStore _bindingStore = new BindingStore();
+
+        public GitProjectBinding _projectBinding;
 
         public void AutoBind()
         {
@@ -229,6 +244,10 @@ namespace GitHistoryAddIn.View
             MessageBox.Show(string.Format("Binding validation error: {0}", error.Message), "Binding Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        #endregion
+
+        #region UI Event Handlers
+
         private void commitsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ContributionGraph.Model.Commit selectedCommit = null;
@@ -247,5 +266,7 @@ namespace GitHistoryAddIn.View
             this.titleTextArea.Text = selectedCommit.Title;
             this.avatarImage.Load(selectedCommit.AvatarUrl);
         }
+
+        #endregion
     }
 }

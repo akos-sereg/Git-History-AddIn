@@ -205,6 +205,8 @@ namespace GitHistoryAddIn
 
         #endregion
 
+        #region Helpers
+
         private void AddButton(string location, string buttonId, string caption, string tooltip)
         {
             Command command = null;
@@ -283,6 +285,8 @@ namespace GitHistoryAddIn
         {
             return Regex.Replace(filePath, solutionPath.Replace(@"\", @"\\"), "", RegexOptions.IgnoreCase);
         }
+
+#endregion
 
         #region Output window
 
