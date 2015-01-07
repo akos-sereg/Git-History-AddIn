@@ -206,8 +206,9 @@ namespace GitHistoryAddIn.View
         {
             if (isBindingValid)
             {
-                _projectBinding = binding;
-                LoadHistory();
+                this._projectBinding = binding;
+                this._bindingStore.Store(binding, true); // We know for sure that this solution binding works, force saving.
+                this.LoadHistory();
             }
             else
             {
@@ -217,8 +218,8 @@ namespace GitHistoryAddIn.View
                     MessageBoxButtons.OKCancel, 
                     MessageBoxIcon.Warning) == DialogResult.OK)
                 {
-                    _projectBinding = binding;
-                    LoadHistory();
+                    this._projectBinding = binding;
+                    this.LoadHistory();
                 }
             }
         }

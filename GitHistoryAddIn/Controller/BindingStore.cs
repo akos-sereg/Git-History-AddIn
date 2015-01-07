@@ -24,14 +24,16 @@ namespace GitHistoryAddIn.Controller
             _bindingStoreFile = string.Format("{0}/ProjectBindings.xml", path.Remove(0, "file:\\\\".Length - 1));
         }
 
-        public void Store(GitProjectBinding projectBinding)
+        public void Store(GitProjectBinding projectBinding, bool force = false)
         {
             List<GitProjectBinding> bindings = GetBindings();
 
-            GitProjectBinding existingBinding = bindings.FirstOrDefault(x => x.Solution == projectBinding.Solution && x.ProjectName == projectBinding.ProjectName);
-            if (existingBinding == null)
+            GitProjectBinding existingBinding = bindings.FirstOrDefault(x => x.Solution == projectBinding.Solution);
+            if (existingBinding == null || force)
             {
+                bindings.RemoveAll(x => x.Solution == projectBinding.Solution); // Remove previously saved binding(s)
                 bindings.Add(projectBinding);
+
                 Save(bindings);
             }
         }
