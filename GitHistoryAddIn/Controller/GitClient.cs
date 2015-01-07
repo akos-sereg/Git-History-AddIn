@@ -18,13 +18,42 @@ namespace GitHistoryAddIn.Controller
             this.binding = binding;
         }
 
-        public async void GetCommits(string gitFilePath, GitHistory.ProcessCommits onReturned)
+        public async void GetCommits(string gitFilePath, GitHistory.ProcessCommits onReturned, GitHistory.ProcessCommitsError onProcessCommitsError)
         {
             var github = new GitHubClient(new ProductHeaderValue("GitHistoryAddIn"));
             github.Credentials = new Credentials(this.binding.GitUsername, this.binding.GitPassword);
-            IReadOnlyList<GitHubCommit> commits = await github.Repository.Commits.GetAll(binding.ProjectAuthor, binding.ProjectName, new CommitRequest { Path = gitFilePath });
-            
-            onReturned(commits);
+
+            try
+            {
+                IReadOnlyList<GitHubCommit> commits = await github.Repository.Commits.GetAll(binding.ProjectAuthor, binding.ProjectName, new CommitRequest { Path = gitFilePath });
+                onReturned(commits);
+            }
+            catch (Exception err)
+            {
+                onProcessCommitsError(err);
+            }
+        }
+
+        public async void ValidateBinding(GitHistory.BindingValidationComplete onBindingValidationComplete, GitHistory.BindingValidationError onBindingValidationError)
+        {
+            var github = new GitHubClient(new ProductHeaderValue("GitHistoryAddIn"));
+            github.Credentials = new Credentials(this.binding.GitUsername, this.binding.GitPassword);
+
+            string testFileInRepository = string.Format("{0}.sln", this.binding.Solution);
+
+            IReadOnlyList<GitHubCommit> commits = null;
+            try
+            {
+                commits = await github.Repository.Commits.GetAll(binding.ProjectAuthor,
+                    binding.ProjectName,
+                    new CommitRequest { Path = testFileInRepository });
+
+                onBindingValidationComplete(commits != null ? commits.Count > 0 : false, testFileInRepository, binding);
+            }
+            catch (Exception err)
+            {
+                onBindingValidationError(err);
+            }
         }
     }
 }

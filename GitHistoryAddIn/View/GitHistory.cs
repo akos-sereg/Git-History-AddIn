@@ -19,6 +19,12 @@ namespace GitHistoryAddIn.View
     {
         public delegate void ProcessCommits(IReadOnlyList<GitHubCommit> commits);
 
+        public delegate void ProcessCommitsError(Exception error);
+
+        public delegate void BindingValidationComplete(bool bindingIsValid, string testPath, GitProjectBinding binding);
+
+        public delegate void BindingValidationError(Exception error);
+
         public GitProjectBinding _projectBinding;
 
         public BindingStore _bindingStore = new BindingStore();
@@ -105,7 +111,7 @@ namespace GitHistoryAddIn.View
 
             if (this.SelectedGitItem != null && !string.IsNullOrEmpty(this.SelectedGitItem.Path))
             {
-                new GitClient(_projectBinding).GetCommits(this.SelectedGitItem.Path, OnCommitsReturned);
+                new GitClient(_projectBinding).GetCommits(this.SelectedGitItem.Path, this.OnCommitsReturned, this.OnCommitsFetchingError);
             }
         }
 
@@ -133,6 +139,11 @@ namespace GitHistoryAddIn.View
             this.titleTextArea.Text = string.Empty;
             this.avatarImage.Image = null;
             this.commitsLabel.Text = "Commits";
+        }
+
+        public void OnCommitsFetchingError(Exception error)
+        {
+            MessageBox.Show(string.Format("Commits could not be fetched from GitHub: {0}", error.Message), "Commit Fetching error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public void AutoBind()
@@ -175,9 +186,46 @@ namespace GitHistoryAddIn.View
             ProjectBindingForm bindingForm = new ProjectBindingForm(this._projectBinding, this._bindingStore);
             bindingForm.ShowDialog();
 
-            _projectBinding = bindingForm.ProjectBinding;
+            if (bindingForm.ProjectBinding != null)
+            {
+                if (!bindingForm.ProjectBinding.IsValid)
+                {
+                    MessageBox.Show("All GitHub parameters (user, password, author, project) should be provided, as well as local solution name", 
+                        "Invalid Binding", 
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    new GitClient(bindingForm.ProjectBinding).ValidateBinding(this.OnBindingValidationComplete, this.OnBindingValidationError);
+                }
+            }
+        }
 
-            LoadHistory();
+        private void OnBindingValidationComplete(bool isBindingValid, string testPath, GitProjectBinding binding)
+        {
+            if (isBindingValid)
+            {
+                _projectBinding = binding;
+                LoadHistory();
+            }
+            else
+            {
+                if (MessageBox.Show(string.Format("Git project binding does not seem to be correct, {0} file is not available "
+                    + "in {1}'s repository {2}. Do you want to use the binding anyway?", testPath, binding.ProjectAuthor, binding.ProjectName), 
+                    "Binding Validation",
+                    MessageBoxButtons.OKCancel, 
+                    MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    _projectBinding = binding;
+                    LoadHistory();
+                }
+            }
+        }
+
+        private void OnBindingValidationError(Exception error)
+        {
+            MessageBox.Show(string.Format("Binding validation error: {0}", error.Message), "Binding Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void commitsComboBox_SelectedIndexChanged(object sender, EventArgs e)
