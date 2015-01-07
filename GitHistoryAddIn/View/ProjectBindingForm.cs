@@ -69,7 +69,7 @@ namespace GitHistoryAddIn.View
             this.existingBindings.Rows.Clear();
 
             bindings.ForEach(x => {
-                this.existingBindings.Rows.Add(x.GitUsername, x.GitPassword, x.ProjectAuthor, x.ProjectName, x.Solution);
+                this.existingBindings.Rows.Add(x.Solution, x.GitUsername, x.GitPassword, x.ProjectAuthor, x.ProjectName);
             });
         }
 
@@ -139,7 +139,10 @@ namespace GitHistoryAddIn.View
 
         private void UpdateTestFilepath()
         {
-            testFilePathLabel.Text = string.Format("http://github.com/{0}/{1}/{2}.sln", this.gitProjectAuthor.Text, this.gitProjectName.Text, this.solutionTextBox.Text);
+            testFilePathLabel.Text = new BindingValidationPath(new GitProjectBinding { 
+                ProjectAuthor = this.gitProjectAuthor.Text, 
+                ProjectName = this.gitProjectName.Text, 
+                Solution = this.solutionTextBox.Text }).TestUrl;
         }
 
         private void gitProjectAuthor_TextChanged(object sender, EventArgs e)
@@ -171,11 +174,11 @@ namespace GitHistoryAddIn.View
             {
                 selectedBinding = new GitProjectBinding
                 {
-                    GitUsername = (string)this.existingBindings.SelectedRows[0].Cells[0].Value,
-                    GitPassword = (string)this.existingBindings.SelectedRows[0].Cells[1].Value,
-                    ProjectAuthor = (string)this.existingBindings.SelectedRows[0].Cells[2].Value,
-                    ProjectName = (string)this.existingBindings.SelectedRows[0].Cells[3].Value,
-                    Solution = (string)this.existingBindings.SelectedRows[0].Cells[4].Value
+                    Solution = (string)this.existingBindings.SelectedRows[0].Cells[0].Value,
+                    GitUsername = (string)this.existingBindings.SelectedRows[0].Cells[1].Value,
+                    GitPassword = (string)this.existingBindings.SelectedRows[0].Cells[2].Value,
+                    ProjectAuthor = (string)this.existingBindings.SelectedRows[0].Cells[3].Value,
+                    ProjectName = (string)this.existingBindings.SelectedRows[0].Cells[4].Value
                 };
             }
 

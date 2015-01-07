@@ -46,11 +46,11 @@
             this.solutionTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.testFilePathLabel = new System.Windows.Forms.Label();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.projectAuthorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).BeginInit();
             this.gridContextMenu.SuspendLayout();
@@ -158,11 +158,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.existingBindings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.existingBindings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column2,
             this.Column3,
             this.Column4,
             this.projectAuthorColumn,
-            this.Column1,
-            this.Column2});
+            this.Column1});
             this.existingBindings.ContextMenuStrip = this.gridContextMenu;
             this.existingBindings.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.existingBindings.Location = new System.Drawing.Point(317, 12);
@@ -209,23 +209,29 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(18, 195);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.Size = new System.Drawing.Size(273, 13);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Test file path:";
+            this.label6.Text = "Based on above configuration, this URL should be valid:";
             // 
             // testFilePathLabel
             // 
             this.testFilePathLabel.AutoSize = true;
-            this.testFilePathLabel.Location = new System.Drawing.Point(95, 195);
+            this.testFilePathLabel.Location = new System.Drawing.Point(297, 195);
             this.testFilePathLabel.Name = "testFilePathLabel";
             this.testFilePathLabel.Size = new System.Drawing.Size(27, 13);
             this.testFilePathLabel.TabIndex = 8;
             this.testFilePathLabel.Text = "N/A";
             // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Solution Name";
+            this.Column2.Name = "Column2";
+            // 
             // Column3
             // 
             this.Column3.HeaderText = "Git Username";
             this.Column3.Name = "Column3";
+            this.Column3.Visible = false;
             // 
             // Column4
             // 
@@ -237,17 +243,11 @@
             // 
             this.projectAuthorColumn.HeaderText = "Git Project Author";
             this.projectAuthorColumn.Name = "projectAuthorColumn";
-            this.projectAuthorColumn.Visible = false;
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Git Project Name";
             this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Solution Name";
-            this.Column2.Name = "Column2";
             // 
             // ProjectBindingForm
             // 
@@ -293,10 +293,10 @@
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label testFilePathLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn projectAuthorColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

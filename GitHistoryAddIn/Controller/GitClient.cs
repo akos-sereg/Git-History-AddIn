@@ -39,7 +39,7 @@ namespace GitHistoryAddIn.Controller
             var github = new GitHubClient(new ProductHeaderValue("GitHistoryAddIn"));
             github.Credentials = new Credentials(this.binding.GitUsername, this.binding.GitPassword);
 
-            string testFileInRepository = string.Format("{0}.sln", this.binding.Solution);
+            string testFileInRepository = new BindingValidationPath(this.binding).SolutionFilename;
 
             IReadOnlyList<GitHubCommit> commits = null;
             try

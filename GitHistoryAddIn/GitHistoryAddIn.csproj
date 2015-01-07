@@ -70,6 +70,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controller\BindingStore.cs" />
+    <Compile Include="Controller\BindingValidationPath.cs" />
     <Compile Include="Controller\GitClient.cs" />
     <Compile Include="Model\GitItem.cs" />
     <Compile Include="Model\GitProjectBinding.cs" />
