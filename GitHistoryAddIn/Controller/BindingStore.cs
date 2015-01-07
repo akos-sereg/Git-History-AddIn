@@ -34,8 +34,16 @@ namespace GitHistoryAddIn.Controller
                 bindings.RemoveAll(x => x.Solution == projectBinding.Solution); // Remove previously saved binding(s)
                 bindings.Add(projectBinding);
 
-                Save(bindings);
+                this.Save(bindings);
             }
+        }
+
+        public void Remove(GitProjectBinding binding)
+        {
+            List<GitProjectBinding> bindings = GetBindings();
+            bindings.RemoveAll(x => x.Solution == binding.Solution);
+            
+            this.Save(bindings);
         }
 
         public List<GitProjectBinding> GetBindings()

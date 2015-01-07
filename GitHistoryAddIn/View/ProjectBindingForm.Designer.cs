@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gitProjectAuthor = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,10 +44,13 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gridContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.solutionTextBox = new System.Windows.Forms.TextBox();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).BeginInit();
+            this.gridContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -153,6 +157,7 @@
             this.Column4,
             this.Column1,
             this.Column2});
+            this.existingBindings.ContextMenuStrip = this.gridContextMenu;
             this.existingBindings.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.existingBindings.Location = new System.Drawing.Point(317, 12);
             this.existingBindings.Name = "existingBindings";
@@ -183,6 +188,13 @@
             this.Column2.HeaderText = "Solution Name";
             this.Column2.Name = "Column2";
             // 
+            // gridContextMenu
+            // 
+            this.gridContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeToolStripMenuItem});
+            this.gridContextMenu.Name = "gridContextMenu";
+            this.gridContextMenu.Size = new System.Drawing.Size(153, 48);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -198,6 +210,13 @@
             this.solutionTextBox.Name = "solutionTextBox";
             this.solutionTextBox.Size = new System.Drawing.Size(109, 20);
             this.solutionTextBox.TabIndex = 6;
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // ProjectBindingForm
             // 
@@ -216,6 +235,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).EndInit();
+            this.gridContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,5 +260,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.TextBox gitProjectAuthor;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ContextMenuStrip gridContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }

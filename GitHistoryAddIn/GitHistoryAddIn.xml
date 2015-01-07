@@ -56,6 +56,11 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="M:GitHistoryAddIn.View.ProjectBindingForm.GetSelectedBinding">
+            <summary>
+            Get selected binding from Grid
+            </summary>
+        </member>
         <member name="F:GitHistoryAddIn.View.ProjectBindingForm.components">
             <summary>
             Required designer variable.

@@ -78,16 +78,7 @@ namespace GitHistoryAddIn.View
 
         private void existingBindings_SelectionChanged(object sender, EventArgs e)
         {
-            GitProjectBinding selectedBinding = null;
-            if (this.existingBindings.SelectedRows != null && this.existingBindings.SelectedRows.Count == 1)
-            {
-                selectedBinding = new GitProjectBinding { 
-                    GitUsername = (string)this.existingBindings.SelectedRows[0].Cells[0].Value,
-                    GitPassword = (string)this.existingBindings.SelectedRows[0].Cells[1].Value,
-                    ProjectName = (string)this.existingBindings.SelectedRows[0].Cells[2].Value,
-                    Solution = (string)this.existingBindings.SelectedRows[0].Cells[3].Value
-                };
-            }
+            GitProjectBinding selectedBinding = this.GetSelectedBinding();
 
             if (selectedBinding != null)
             {
@@ -109,6 +100,43 @@ namespace GitHistoryAddIn.View
         private void ProjectBindingForm_Load(object sender, EventArgs e)
         {
             ProjectBinding = this._originalBinding;
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GitProjectBinding selectedBinding = this.GetSelectedBinding();
+
+            if (selectedBinding != null)
+            {
+                this._bindingStore.Remove(selectedBinding);
+                MessageBox.Show(string.Format("Binding for solution {0} has been removed", selectedBinding.Solution), "Remove Binding", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.PopulateExistingBindings();
+            }
+            else
+            {
+                MessageBox.Show("There is no binding selected", "Remove Binding", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// Get selected binding from Grid
+        /// </summary>
+        private GitProjectBinding GetSelectedBinding()
+        {
+            GitProjectBinding selectedBinding = null;
+            if (this.existingBindings.SelectedRows != null && this.existingBindings.SelectedRows.Count == 1)
+            {
+                selectedBinding = new GitProjectBinding
+                {
+                    GitUsername = (string)this.existingBindings.SelectedRows[0].Cells[0].Value,
+                    GitPassword = (string)this.existingBindings.SelectedRows[0].Cells[1].Value,
+                    ProjectName = (string)this.existingBindings.SelectedRows[0].Cells[2].Value,
+                    Solution = (string)this.existingBindings.SelectedRows[0].Cells[3].Value
+                };
+            }
+
+            return selectedBinding;
         }
     }
 }
