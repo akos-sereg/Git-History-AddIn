@@ -69,7 +69,7 @@ namespace GitHistoryAddIn.View
             this.existingBindings.Rows.Clear();
 
             bindings.ForEach(x => {
-                this.existingBindings.Rows.Add(x.GitUsername, x.GitPassword, x.ProjectName, x.Solution);
+                this.existingBindings.Rows.Add(x.GitUsername, x.GitPassword, x.ProjectAuthor, x.ProjectName, x.Solution);
             });
         }
 
@@ -173,8 +173,9 @@ namespace GitHistoryAddIn.View
                 {
                     GitUsername = (string)this.existingBindings.SelectedRows[0].Cells[0].Value,
                     GitPassword = (string)this.existingBindings.SelectedRows[0].Cells[1].Value,
-                    ProjectName = (string)this.existingBindings.SelectedRows[0].Cells[2].Value,
-                    Solution = (string)this.existingBindings.SelectedRows[0].Cells[3].Value
+                    ProjectAuthor = (string)this.existingBindings.SelectedRows[0].Cells[2].Value,
+                    ProjectName = (string)this.existingBindings.SelectedRows[0].Cells[3].Value,
+                    Solution = (string)this.existingBindings.SelectedRows[0].Cells[4].Value
                 };
             }
 

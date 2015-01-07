@@ -40,16 +40,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.existingBindings = new System.Windows.Forms.DataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.solutionTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.testFilePathLabel = new System.Windows.Forms.Label();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projectAuthorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.existingBindings)).BeginInit();
             this.gridContextMenu.SuspendLayout();
@@ -159,6 +160,7 @@
             this.existingBindings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column3,
             this.Column4,
+            this.projectAuthorColumn,
             this.Column1,
             this.Column2});
             this.existingBindings.ContextMenuStrip = this.gridContextMenu;
@@ -170,27 +172,6 @@
             this.existingBindings.Size = new System.Drawing.Size(441, 167);
             this.existingBindings.TabIndex = 0;
             this.existingBindings.SelectionChanged += new System.EventHandler(this.existingBindings_SelectionChanged);
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Git Username";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Git Password";
-            this.Column4.Name = "Column4";
-            this.Column4.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Git Project Name";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Solution Name";
-            this.Column2.Name = "Column2";
             // 
             // gridContextMenu
             // 
@@ -241,6 +222,33 @@
             this.testFilePathLabel.TabIndex = 8;
             this.testFilePathLabel.Text = "N/A";
             // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Git Username";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Git Password";
+            this.Column4.Name = "Column4";
+            this.Column4.Visible = false;
+            // 
+            // projectAuthorColumn
+            // 
+            this.projectAuthorColumn.HeaderText = "Git Project Author";
+            this.projectAuthorColumn.Name = "projectAuthorColumn";
+            this.projectAuthorColumn.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Git Project Name";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Solution Name";
+            this.Column2.Name = "Column2";
+            // 
             // ProjectBindingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,15 +287,16 @@
         private System.Windows.Forms.DataGridView existingBindings;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox solutionTextBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.TextBox gitProjectAuthor;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ContextMenuStrip gridContextMenu;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label testFilePathLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn projectAuthorColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
