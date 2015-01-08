@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider2 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
+            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider1 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
             this.gitProjectBindingLink = new System.Windows.Forms.LinkLabel();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.changeCountLabel = new System.Windows.Forms.Label();
+            this.deletionCountLabel = new System.Windows.Forms.Label();
+            this.additionCountLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.fileList = new System.Windows.Forms.ListBox();
             this.avatarImage = new System.Windows.Forms.PictureBox();
             this.dateLabel = new System.Windows.Forms.Label();
@@ -39,11 +44,11 @@
             this.authorLabel = new System.Windows.Forms.Label();
             this.commitsComboBox = new System.Windows.Forms.ComboBox();
             this.commitsLabel = new System.Windows.Forms.Label();
-            this.calendarView1 = new ContributionGraph.CalendarView();
             this.gitItemIcon = new System.Windows.Forms.PictureBox();
             this.refreshOnWindowActivation = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.calendarView1 = new ContributionGraph.CalendarView();
             this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gitItemIcon)).BeginInit();
             this.SuspendLayout();
@@ -72,6 +77,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.flowLayoutPanel1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.fileList);
             this.groupBox1.Controls.Add(this.avatarImage);
@@ -84,6 +90,57 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Commit Details";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.Controls.Add(this.deletionCountLabel);
+            this.flowLayoutPanel1.Controls.Add(this.changeCountLabel);
+            this.flowLayoutPanel1.Controls.Add(this.additionCountLabel);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(163, 22);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(179, 16);
+            this.flowLayoutPanel1.TabIndex = 9;
+            // 
+            // changeCountLabel
+            // 
+            this.changeCountLabel.AutoSize = true;
+            this.changeCountLabel.ForeColor = System.Drawing.Color.Black;
+            this.changeCountLabel.Location = new System.Drawing.Point(25, 0);
+            this.changeCountLabel.Name = "changeCountLabel";
+            this.changeCountLabel.Size = new System.Drawing.Size(13, 13);
+            this.changeCountLabel.TabIndex = 10;
+            this.changeCountLabel.Text = "0";
+            // 
+            // deletionCountLabel
+            // 
+            this.deletionCountLabel.AutoSize = true;
+            this.deletionCountLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.deletionCountLabel.Location = new System.Drawing.Point(3, 0);
+            this.deletionCountLabel.Name = "deletionCountLabel";
+            this.deletionCountLabel.Size = new System.Drawing.Size(16, 13);
+            this.deletionCountLabel.TabIndex = 9;
+            this.deletionCountLabel.Text = "-0";
+            // 
+            // additionCountLabel
+            // 
+            this.additionCountLabel.AutoSize = true;
+            this.additionCountLabel.ForeColor = System.Drawing.Color.Green;
+            this.additionCountLabel.Location = new System.Drawing.Point(44, 0);
+            this.additionCountLabel.Name = "additionCountLabel";
+            this.additionCountLabel.Size = new System.Drawing.Size(19, 13);
+            this.additionCountLabel.TabIndex = 11;
+            this.additionCountLabel.Text = "+0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(94, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Change list:";
             // 
             // fileList
             // 
@@ -158,24 +215,6 @@
             this.commitsLabel.TabIndex = 6;
             this.commitsLabel.Text = "Commits";
             // 
-            // calendarView1
-            // 
-            this.calendarView1.BackColor = System.Drawing.Color.White;
-            this.calendarView1.CellSize = 12;
-            this.calendarView1.ColorProvider = discreteWeightedColorProvider2;
-            this.calendarView1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.calendarView1.DataSource = null;
-            this.calendarView1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.calendarView1.DefaultColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.calendarView1.DisplayedWeeks = 53;
-            this.calendarView1.EndDate = new System.DateTime(2015, 1, 8, 20, 25, 9, 307);
-            this.calendarView1.Location = new System.Drawing.Point(12, 41);
-            this.calendarView1.MaximumSize = new System.Drawing.Size(761, 131);
-            this.calendarView1.MinimumSize = new System.Drawing.Size(761, 131);
-            this.calendarView1.Name = "calendarView1";
-            this.calendarView1.Size = new System.Drawing.Size(761, 131);
-            this.calendarView1.TabIndex = 2;
-            // 
             // gitItemIcon
             // 
             this.gitItemIcon.Location = new System.Drawing.Point(12, 12);
@@ -194,14 +233,23 @@
             this.refreshOnWindowActivation.Text = "Refresh on window activation";
             this.refreshOnWindowActivation.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // calendarView1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(94, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Change list:";
+            this.calendarView1.BackColor = System.Drawing.Color.White;
+            this.calendarView1.CellSize = 12;
+            this.calendarView1.ColorProvider = discreteWeightedColorProvider1;
+            this.calendarView1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.calendarView1.DataSource = null;
+            this.calendarView1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.calendarView1.DefaultColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.calendarView1.DisplayedWeeks = 53;
+            this.calendarView1.EndDate = new System.DateTime(2015, 1, 8, 20, 25, 9, 307);
+            this.calendarView1.Location = new System.Drawing.Point(12, 41);
+            this.calendarView1.MaximumSize = new System.Drawing.Size(761, 131);
+            this.calendarView1.MinimumSize = new System.Drawing.Size(761, 131);
+            this.calendarView1.Name = "calendarView1";
+            this.calendarView1.Size = new System.Drawing.Size(761, 131);
+            this.calendarView1.TabIndex = 2;
             // 
             // GitHistory
             // 
@@ -219,6 +267,8 @@
             this.Size = new System.Drawing.Size(1317, 208);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gitItemIcon)).EndInit();
             this.ResumeLayout(false);
@@ -242,5 +292,9 @@
         private System.Windows.Forms.CheckBox refreshOnWindowActivation;
         private System.Windows.Forms.ListBox fileList;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label deletionCountLabel;
+        private System.Windows.Forms.Label changeCountLabel;
+        private System.Windows.Forms.Label additionCountLabel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

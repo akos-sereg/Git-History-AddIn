@@ -122,10 +122,11 @@ namespace GitHistoryAddIn.View
         {
             ContributionList data = new ContributionList();
 
-            commits.ToList().ForEach(x =>  { 
-                data.Add(new ContributionGraph.Model.Commit {
-                    Date = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd HH:mm:ss")), 
-                    Author = x.Committer.Login, 
+            commits.ToList().ForEach(x =>  {
+                data.Add(new ContributionGraph.Model.Commit
+                {
+                    Date = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd HH:mm:ss")),
+                    Author = x.Committer.Login,
                     Title = x.Commit.Message,
                     AvatarUrl = x.Committer.AvatarUrl,
                     Sha = x.Sha
@@ -260,6 +261,10 @@ namespace GitHistoryAddIn.View
                 commit => {
                     this.fileList.Items.Clear();
                     commit.Files.ToList().ForEach(file => this.fileList.Items.Add(file.Filename));
+
+                    this.additionCountLabel.Text = string.Format("+{0}", commit.Files.Sum(file => file.Additions));
+                    this.deletionCountLabel.Text = string.Format("-{0}", commit.Files.Sum(file => file.Deletions));
+                    this.changeCountLabel.Text = Convert.ToString(commit.Files.Sum(file => file.Changes));
                 },
                 // On error
                 error => {
