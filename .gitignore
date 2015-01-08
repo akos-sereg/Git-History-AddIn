@@ -1,3 +1,12 @@
 # NuGet
 packages
 !packages/repositories.config
+
+# Binaries
+GitHistoryAddIn/bin/*.*
+GitHistoryAddIn/bin/Debug
+GitHistoryAddIn/obj
+GitHistoryAddInTest/bin
+GitHistoryAddInTest/obj
+
+*.suo
