@@ -257,6 +257,7 @@ namespace GitHistoryAddIn.View
         private void LoadCommit(string commitSha)
         {
             new GitClient(this._projectBinding).GetCommit(commitSha,
+
                 // On success
                 commit => {
                     this.fileList.Items.Clear();
@@ -266,6 +267,7 @@ namespace GitHistoryAddIn.View
                     this.deletionCountLabel.Text = string.Format("-{0}", commit.Files.Sum(file => file.Deletions));
                     this.changeCountLabel.Text = Convert.ToString(commit.Files.Sum(file => file.Changes));
                 },
+
                 // On error
                 error => {
                     MessageBox.Show(string.Format("Error occured while loading commit details: {0}", error.Message), "Loading commit details", MessageBoxButtons.OK, MessageBoxIcon.Warning);
