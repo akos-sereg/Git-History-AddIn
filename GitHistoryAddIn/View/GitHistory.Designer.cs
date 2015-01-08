@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider1 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
+            ContributionGraph.Controller.DiscreteWeightedColorProvider discreteWeightedColorProvider2 = new ContributionGraph.Controller.DiscreteWeightedColorProvider();
             this.gitProjectBindingLink = new System.Windows.Forms.LinkLabel();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.fileList = new System.Windows.Forms.ListBox();
             this.avatarImage = new System.Windows.Forms.PictureBox();
-            this.titleTextArea = new System.Windows.Forms.RichTextBox();
             this.dateLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.authorLabel = new System.Windows.Forms.Label();
@@ -42,6 +42,7 @@
             this.calendarView1 = new ContributionGraph.CalendarView();
             this.gitItemIcon = new System.Windows.Forms.PictureBox();
             this.refreshOnWindowActivation = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatarImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gitItemIcon)).BeginInit();
@@ -71,8 +72,9 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.fileList);
             this.groupBox1.Controls.Add(this.avatarImage);
-            this.groupBox1.Controls.Add(this.titleTextArea);
             this.groupBox1.Controls.Add(this.dateLabel);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.authorLabel);
@@ -82,6 +84,17 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Commit Details";
+            // 
+            // fileList
+            // 
+            this.fileList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fileList.FormattingEnabled = true;
+            this.fileList.Location = new System.Drawing.Point(97, 44);
+            this.fileList.Name = "fileList";
+            this.fileList.Size = new System.Drawing.Size(406, 69);
+            this.fileList.TabIndex = 7;
             // 
             // avatarImage
             // 
@@ -93,23 +106,12 @@
             this.avatarImage.TabIndex = 6;
             this.avatarImage.TabStop = false;
             // 
-            // titleTextArea
-            // 
-            this.titleTextArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.titleTextArea.Location = new System.Drawing.Point(97, 44);
-            this.titleTextArea.Name = "titleTextArea";
-            this.titleTextArea.ReadOnly = true;
-            this.titleTextArea.Size = new System.Drawing.Size(407, 72);
-            this.titleTextArea.TabIndex = 5;
-            this.titleTextArea.Text = "";
-            // 
             // dateLabel
             // 
+            this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateLabel.AutoSize = true;
             this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.Location = new System.Drawing.Point(133, 22);
+            this.dateLabel.Location = new System.Drawing.Point(387, 16);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(27, 13);
             this.dateLabel.TabIndex = 3;
@@ -117,8 +119,9 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(94, 22);
+            this.label3.Location = new System.Drawing.Point(348, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 2;
@@ -158,13 +161,14 @@
             // calendarView1
             // 
             this.calendarView1.BackColor = System.Drawing.Color.White;
-            this.calendarView1.ColorProvider = discreteWeightedColorProvider1;
+            this.calendarView1.CellSize = 12;
+            this.calendarView1.ColorProvider = discreteWeightedColorProvider2;
             this.calendarView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calendarView1.DataSource = null;
             this.calendarView1.DefaultColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.calendarView1.DefaultColorHover = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.calendarView1.DisplayedWeeks = 53;
-            this.calendarView1.EndDate = System.DateTime.Now;
+            this.calendarView1.EndDate = new System.DateTime(2015, 1, 8, 20, 25, 9, 307);
             this.calendarView1.Location = new System.Drawing.Point(12, 41);
             this.calendarView1.MaximumSize = new System.Drawing.Size(761, 131);
             this.calendarView1.MinimumSize = new System.Drawing.Size(761, 131);
@@ -189,6 +193,15 @@
             this.refreshOnWindowActivation.TabIndex = 8;
             this.refreshOnWindowActivation.Text = "Refresh on window activation";
             this.refreshOnWindowActivation.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(94, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Change list:";
             // 
             // GitHistory
             // 
@@ -224,9 +237,10 @@
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.ComboBox commitsComboBox;
         private System.Windows.Forms.Label commitsLabel;
-        private System.Windows.Forms.RichTextBox titleTextArea;
         private System.Windows.Forms.PictureBox avatarImage;
         private System.Windows.Forms.PictureBox gitItemIcon;
         private System.Windows.Forms.CheckBox refreshOnWindowActivation;
+        private System.Windows.Forms.ListBox fileList;
+        private System.Windows.Forms.Label label1;
     }
 }

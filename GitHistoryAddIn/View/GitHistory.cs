@@ -127,7 +127,8 @@ namespace GitHistoryAddIn.View
                     Date = DateTime.Parse(x.Commit.Committer.Date.ToString("yyyy-MM-dd HH:mm:ss")), 
                     Author = x.Committer.Login, 
                     Title = x.Commit.Message,
-                    AvatarUrl = x.Committer.AvatarUrl
+                    AvatarUrl = x.Committer.AvatarUrl,
+                    Sha = x.Sha
                 });
             });
 
@@ -139,9 +140,9 @@ namespace GitHistoryAddIn.View
             this.commitsComboBox.Items.Clear();
             this.authorLabel.Text = string.Empty;
             this.dateLabel.Text = string.Empty;
-            this.titleTextArea.Text = string.Empty;
             this.avatarImage.Image = null;
             this.commitsLabel.Text = "Commits";
+            this.fileList.Items.Clear();
         }
 
         public void OnCommitsFetchingError(Exception error)
@@ -246,6 +247,28 @@ namespace GitHistoryAddIn.View
 
         #endregion
 
+        #region Feature - Load Commit
+
+        public delegate void GetCommitReturned(GitHubCommit commit);
+
+        public delegate void GetCommitError(Exception error);
+
+        private void LoadCommit(string commitSha)
+        {
+            new GitClient(this._projectBinding).GetCommit(commitSha,
+                // On success
+                commit => {
+                    this.fileList.Items.Clear();
+                    commit.Files.ToList().ForEach(file => this.fileList.Items.Add(file.Filename));
+                },
+                // On error
+                error => {
+                    MessageBox.Show(string.Format("Error occured while loading commit details: {0}", error.Message), "Loading commit details", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                });
+        }
+
+        #endregion
+
         #region UI Event Handlers
 
         private void commitsComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -263,8 +286,9 @@ namespace GitHistoryAddIn.View
 
             this.authorLabel.Text = selectedCommit.Author;
             this.dateLabel.Text = selectedCommit.Date.ToString("yyyy-MM-dd HH:mm:ss");
-            this.titleTextArea.Text = selectedCommit.Title;
             this.avatarImage.Load(selectedCommit.AvatarUrl);
+
+            LoadCommit(selectedCommit.Sha);
         }
 
         #endregion

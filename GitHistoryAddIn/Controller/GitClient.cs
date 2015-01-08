@@ -34,6 +34,22 @@ namespace GitHistoryAddIn.Controller
             }
         }
 
+        public async void GetCommit(string commitSha, GitHistory.GetCommitReturned onGetCommitReturned, GitHistory.GetCommitError onGetCommitError) 
+        {
+            var github = new GitHubClient(new ProductHeaderValue("GitHistoryAddIn"));
+            github.Credentials = new Credentials(this.binding.GitUsername, this.binding.GitPassword);
+
+            try
+            {
+                GitHubCommit commit = await github.Repository.Commits.Get(this.binding.ProjectAuthor, this.binding.ProjectName, commitSha);
+                onGetCommitReturned(commit);
+            }
+            catch (Exception err)
+            {
+                onGetCommitError(err);
+            }
+        }
+
         public async void ValidateBinding(GitHistory.BindingValidationComplete onBindingValidationComplete, GitHistory.BindingValidationError onBindingValidationError)
         {
             var github = new GitHubClient(new ProductHeaderValue("GitHistoryAddIn"));
