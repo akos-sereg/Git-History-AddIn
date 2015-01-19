@@ -79,6 +79,9 @@ namespace GitHistoryAddIn.View
         {
             InitializeComponent();
 
+            // Set CalendarGraph's end date to current date, as IDE always screws up this property
+            this.calendarView1.EndDate = DateTime.Now;
+
             this.calendarView1.OnContributionSelected += (contrib) => { 
                 this.commitsComboBox.Items.Clear();
                 if (contrib != null && contrib.Commits != null)
